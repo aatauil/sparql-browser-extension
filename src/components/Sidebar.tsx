@@ -2,7 +2,7 @@ import React from 'react'
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from '~data/db';
 
-function TabList() {
+function Sidebar() {
 
   const files = useLiveQuery(() => db.files.toArray());
   
@@ -55,4 +55,4 @@ function TabList() {
   )
 }
 
-export default TabList
+export default Sidebar
