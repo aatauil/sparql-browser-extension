@@ -66,9 +66,9 @@ function Sidebar() {
 
   return (
     <div className='flex flex-col text-gray-600 h-full w-60 border-r border-zinc-300'> 
-      <div className='flex items-center space-x-2 bg-zinc-100 p-3 text-sm'>
+      <div className='flex items-center space-x-2 bg-gray-100 p-3 text-sm'>
         <i className="ri-bubble-chart-fill text-blue-600"></i>
-        <h1 className='font-medium'>Sparql browser extention</h1>
+        <h1 className='font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-600'>Sparql browser extention</h1>
       </div> 
       <div className='py-4'>
         <div className='flex items-center justify-between px-3 mb-2'>
@@ -89,8 +89,8 @@ function Sidebar() {
           }
 
           {workspaces?.map((ws, index) => (
-            <div key={index} onClick={() => setWorkspace(ws)} className={`flex items-center space-x-1 cursor-pointer border text-xs p-1 rounded font-medium ${ws.focused ? "bg-blue-100 text-black border-2 border-blue-400" : "hover:bg-zinc-100"}`} >
-              <i className="ri-layout-2-line text-base"></i>
+            <div key={index} onClick={() => setWorkspace(ws)} className={`flex items-center space-x-1.5 cursor-pointer border text-xs p-2 rounded font-medium hover:bg-zinc-100 ${ws.focused && "bg-blue-100 text-black border border-blue-400 hover:bg-blue-100"}`} >
+              <i className={`ri-layout-2-line text-lg ${ws.focused && "text-blue-700"}`}></i>
               <div className='flex-1'>{ws.name}</div>
               <button className='hover:text-red-500 rounded-full text-gray-700 flex items-center justify-center h-5 w-5 '>
                 <i className="ri-close-line "></i>
@@ -104,15 +104,16 @@ function Sidebar() {
         <h2 className='px-3 text-sm font-medium text-zinc-900'>Favorite</h2> 
         <div className='p-2 space-y-1'>
           {favorites?.map((file, index) => (
-              <div key={index} className={`flex items-center space-x-1 cursor-pointer text-xs p-1 rounded`} >
-                <i className="ri-file-list-2-line text-base"></i>
+              <div key={index} className={`flex items-center space-x-1 cursor-pointer text-xs p-1 rounded hover:bg-zinc-100 ${file.focused && "text-zinc-900 font-medium bg-zinc-100"}`} >
+                <i className={`ri-star-line text-base ${file.focused && "text-yellow-600"}`}></i>
                 <div className='flex-1' onClick={() => setFile(file.id)}>{file.name}</div>
-                <button className='hover:text-red-500 rounded-full text-gray-700 flex items-center justify-center h-5 w-5 ' onClick={() => deleteFavorite(file)}>
+                <button className='hover:text-red-500 rounded-full flex items-center justify-center h-5 w-5 ' onClick={() => deleteFavorite(file)}>
                   <i className="ri-close-line "></i>
                 </button> 
               </div> 
             ))}
         </div>
+      </div>
       <div className='flex-1'></div>
       <div className='px-2'>
         <a href="https://github.com/aatauil/sparql-browser-extention" target="_blank" rel="noopener noreferrer">

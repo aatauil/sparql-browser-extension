@@ -22,3 +22,7 @@
 .cm-gutterElement {
   @apply text-sm text-zinc-800
 }
+
+.cm-focused {
+  outline: none !important;
+}
