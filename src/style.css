@@ -26,3 +26,15 @@
 .cm-focused {
   outline: none !important;
 }
+
+.rdg-cell {
+  @apply border
+}
+
+.rdg-row-even {
+  @apply bg-zinc-50
+}
+
+.rdg-cell-resizable::after {
+  @apply bg-zinc-200
+}

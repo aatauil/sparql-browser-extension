@@ -66,9 +66,9 @@ function Sidebar() {
 
   return (
     <div className='flex flex-col text-gray-600 h-full w-60 border-r border-zinc-300'> 
-      <div className='flex items-center space-x-2 bg-gray-100 p-3 text-sm'>
+      <div className='flex items-center space-x-2 p-3 text-sm border-b-2'>
         <i className="ri-bubble-chart-fill text-blue-600"></i>
-        <h1 className='font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-600'>Sparql browser extention</h1>
+        <h1 className='font-extrabold text-zinc-800'>Sparql browser extention</h1>
       </div> 
       <div className='py-4'>
         <div className='flex items-center justify-between px-3 mb-2'>
@@ -117,7 +117,7 @@ function Sidebar() {
       <div className='flex-1'></div>
       <div className='px-2'>
         <a href="https://github.com/aatauil/sparql-browser-extention" target="_blank" rel="noopener noreferrer">
-          <i class="ri-github-fill text-2xl text-black hover:text-zinc-600"></i>
+          <i className="ri-github-fill text-2xl text-black hover:text-zinc-600"></i>
         </a>
 
       </div>
