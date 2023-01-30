@@ -10,22 +10,46 @@ function Output() {
   if(!file?.output) return <EmptyStateOutput />;
   const {columns, rows} = parseForGrid(file?.output)
 
-
+  function clearOutput() {
+    db.files.update(file, {
+      output: null
+    })
+  }
 
   return (
-    <DataGrid 
-      columns={columns} 
-      rows={rows} 
-      resizable={true}
-    />
+    <div className='flex-1 border-t border-zinc-300  bg-zinc-100'> 
+      <div className='flex items-center justify-between p-2'>
+        <div className='font-medium text-zinc-700'>Results</div>
+        <button onClick={clearOutput} className='text-zinc-800 bg-zinc-200 font-medium px-4 py-1 rounded border border-zinc-300'>Clear output</button>
+      </div>
+      <div className='p-2'>
+        <DataGrid 
+          className='border border-zinc-300 text-xs rounded-lg'
+          columns={columns} 
+          rows={rows} 
+          resizable={true}
+        />
+      </div>
+
+    </div>
+
   )
 }
 
 
 function EmptyStateOutput() {
   return (
-    <div className='h-full w-full bg-zinc-400'>
+    <div className='flex-1 border-t border-zinc-200 bg-zinc-100'> 
+      <div className='p-2 h-full'>
+        <div className='font-medium text-zinc-700'>Results</div>
+        <div className='flex items-center justify-center h-full text-center'>
+          <div className='text-zinc-500'>
+            <i className="ri-rainbow-line text-4xl"></i>
+            <div>The results of your query will appear here.</div>
+          </div>
 
+        </div>
+      </div>
     </div>
   )
 }
