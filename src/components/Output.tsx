@@ -8,6 +8,7 @@ function Output() {
 
   const file = useLiveQuery(() => db.files.where({ focused: 1 }).first());
   if(!file?.output) return <EmptyStateOutput />;
+
   const {columns, rows} = parseForGrid(file?.output)
 
   function clearOutput() {
@@ -61,6 +62,13 @@ const parseForGrid = function(data) {
     rows : []
   };
 
+  obj.columns.push({
+    key: "ID",
+    name: "ID",
+    resizable: true,
+    frozen: true
+  })
+
   bindingKeys.forEach(element => {
     obj.columns.push({
       key: element,
@@ -69,16 +77,18 @@ const parseForGrid = function(data) {
     })
   });
 
-  obj.rows = data.map(row => {
-    const newRow = {};
-    
+  obj.rows = data.map((row, index) => {
+    const newRow = {
+      ID: index + 1
+    };
+
     bindingKeys.forEach((key) => {
-      newRow[key] = row[key].value
+        newRow[key] = row[key].value
     })
 
     return newRow
   })
-  
+
   return obj;
 };
 
