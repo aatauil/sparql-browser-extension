@@ -14,7 +14,8 @@ function Editor() {
   const debounced = useDebouncedCallback(
     (value) => {
       db.files.update(file.id , {
-        code: value
+        code: value,
+        modified: new Date()
       })
     },
     500
@@ -44,35 +45,22 @@ function Editor() {
     debounced(value);
   }
 
-  async function query() {
-    try {
-    const res = await fetch('https://dbpedia.org/sparql', {
-        method: 'POST',
-        body: file.code,
-        headers: {
-          'Accept': 'application/sparql-results+json,*/*;q=0.9',
-          'Content-Type': 'application/sparql-query'
-        }
-      })
+  if(!file) return (
+    <div className='flex-1 flex items-center justify-center'>
+    <div className='text-zinc-500 text-center'>
+      <i className="ri-braces-line text-4xl"></i>
+      <div>Open a file to start writing your query</div>
+    </div>
 
-      const output = await res.json();
+  </div>
 
-      db.files.update(file, {
-        output: output.results.bindings
-      })
-    } catch(err)  {
-      console.dir(err)
-    }
-  }
+  )
 
   return (
-    <div ref={container} className="text-lg relative">
-      <div className='absolute top-0 right-0 flex items-center space-x-2 mr-6 mt-4 z-50'>
-        <button onClick={query} className='text-green-500 bg-white rounded h-12 w-12 flex items-center justify-center border border-green-700'>
-          <i className="ri-play-mini-line text-3xl leading-none"></i>
-        </button>
+    <div ref={container} className="text-base relative flex-1">
+      <div className='absolute top-0 right-0 flex items-center space-x-2 mr-6 mt-4 z-50 shadow-md'>
         <CopyToClipboard text={file?.code}>
-          <button className='text-zinc-600 bg-white rounded h-12 w-12 flex items-center justify-center border border-zinc-600'>
+          <button className='text-zinc-600 bg-white rounded h-12 w-12 flex items-center justify-center border border-zinc-600 hover:bg-zinc-100'>
             <i className="ri-clipboard-line text-xl leading-none"></i>
           </button>
         </CopyToClipboard>
