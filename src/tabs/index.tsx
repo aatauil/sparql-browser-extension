@@ -9,12 +9,10 @@ import Toolbar from '~components/Toolbar'
 function index() {
   return (
     <div>
-      <div className="bg-white h-screen max-h-screen w-screen max-w-screen overflow-hidden">
+      <div className="bg-white h-screen w-screen max-h-screen max-w-screen overflow-hidden">
         <div className="flex w-full h-full">
-          <div className="w-72 h-full border-r">
-            <SideBar/>
-          </div>
-          <div className="flex-1 flex flex-col">
+          <SideBar/>
+          <div className="flex-1 flex flex-col overflow-hidden">
             <Toolbar/>
             <Editor/>
             <Output/>
