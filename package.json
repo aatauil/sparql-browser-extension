@@ -10,6 +10,7 @@
     "package": "plasmo package"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "dexie": "^3.2.2",
     "dexie-react-hooks": "^1.1.1",
     "plasmo": "0.62.1",
