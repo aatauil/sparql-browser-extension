@@ -58,6 +58,12 @@ function Sidebar() {
     }
   };
 
+  function setFile(fileId) {
+    db.files.where('focused').equals(1).modify({focused: 0});
+    db.files.update(fileId, { focused: 1 });
+  }
+
+
   return (
     <div className='flex flex-col text-gray-600 h-full w-60 border-r border-zinc-300'> 
       <div className='flex items-center space-x-2 bg-zinc-100 p-3 text-sm'>
