@@ -113,6 +113,12 @@ function Sidebar() {
               </div> 
             ))}
         </div>
+      <div className='flex-1'></div>
+      <div className='px-2'>
+        <a href="https://github.com/aatauil/sparql-browser-extention" target="_blank" rel="noopener noreferrer">
+          <i class="ri-github-fill text-2xl text-black hover:text-zinc-600"></i>
+        </a>
+
       </div>
     </div>
   )
