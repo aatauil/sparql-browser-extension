@@ -5,3 +5,20 @@
 @tailwind utilities;
 
 
+.cm-editor {
+  height: 100% !important;
+  @apply p-2
+}
+
+.cm-gutter {
+  background-color: white;
+}
+
+
+.cm-gutters {
+  border: none !important;
+}
+
+.cm-gutterElement {
+  @apply text-sm text-zinc-800
+}
