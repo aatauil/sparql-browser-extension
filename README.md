@@ -3,7 +3,7 @@
   <br>
   <img src="https://user-images.githubusercontent.com/52280338/215782497-e158c4b5-1906-44d8-a122-067cee1830ec.png" alt="Sparqlbrowserextention" width="50"></img>
   <br>
-  Sparql Browser Extention
+   Sparql Browser Extention [beta]
   <br>
 </h1>
 
