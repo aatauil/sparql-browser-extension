@@ -77,7 +77,7 @@ function SbWorkspace() {
         {workspaces?.map((ws, index) => (
           <div key={index} onClick={() => setWorkspace(ws)} className={`flex items-center space-x-1.5 cursor-pointer border text-xs p-2 rounded font-medium hover:bg-zinc-100 ${ws.focused && "bg-blue-100 text-black border border-blue-400 hover:bg-blue-100"}`} >
             <i className={`ri-layout-2-line text-lg ${ws.focused && "text-blue-700"}`}></i>
-            <div className='flex-1'>{ws.name}</div>
+            <div className='flex-1 text-ellipsis overflow-hidden whitespace-nowrap'>{ws.name}</div>
             <button className='hover:text-red-500 rounded-full text-gray-700 flex items-center justify-center h-5 w-5 '>
               <i className="ri-close-line " onClick={() => setSelectedWs(ws)}></i>
             </button> 

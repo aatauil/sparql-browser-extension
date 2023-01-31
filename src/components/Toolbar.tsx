@@ -41,7 +41,6 @@ function Toolbar() {
     })
   }
 
-  console.log(workspace)
 
   if(!file) return null; 
 

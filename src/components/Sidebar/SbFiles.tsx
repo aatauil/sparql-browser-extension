@@ -93,7 +93,7 @@ function SbFiles() {
         {files?.map((file, index) => (
           <div key={index} onClick={() => setFile(file.id)} className={`flex items-center space-x-1 cursor-pointer text-xs p-1 rounded ${file.focused && "bg-zinc-100 text-black font-medium text-zinc-800"}`} >
             <i className={`ri-file-list-2-line text-base ${file.focused && "text-blue-700"}`}></i>
-            <div className='flex-1' >{file.name}</div>
+            <div className='flex-1 text-ellipsis overflow-hidden whitespace-nowrap' >{file.name}</div>
             <button className='hover:text-red-500 rounded-full text-gray-700 flex items-center justify-center h-5 w-5 ' onClick={() => deleteFile(file.id)}>
               <i className="ri-close-line "></i>
             </button> 
