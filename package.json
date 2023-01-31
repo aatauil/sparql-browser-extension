@@ -1,6 +1,6 @@
 {
-  "name": "sparql-browser-extention",
-  "displayName": "Sparql browser extention",
+  "name": "sparql-browser-extension",
+  "displayName": "Sparql browser extension",
   "version": "0.0.0",
   "description": "A basic Plasmo extension.",
   "author": "achraf",
