@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "plasmo dev",
     "build": "plasmo build",
-    "package": "plasmo package"
+    "package": "plasmo package",
+    "analyze": "plasmo build --source-maps --bundle-buddy"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.3",
