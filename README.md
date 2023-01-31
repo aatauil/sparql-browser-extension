@@ -1,33 +1,85 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
 
-## Getting Started
+<h1 align="center">
+  <br>
+  <img src="https://user-images.githubusercontent.com/52280338/215782497-e158c4b5-1906-44d8-a122-067cee1830ec.png" alt="Sparqlbrowserextention" width="50"></img>
+  <br>
+  Sparql Browser Extention
+  <br>
+</h1>
 
-First, run the development server:
+<h4 align="center">Fully featured sparql editor as a browser extention</h4>
+
+<p align="center">
+  <a href="#key-features">Key Features</a> •
+  <a href="#how-to-use">How To Use</a> •
+  <a href="#development">Development</a> •
+  <a href="#license">License</a>
+</p>
+
+![screenshot](https://user-images.githubusercontent.com/52280338/215781479-01d4c419-ca22-4fe8-81d7-4b83c3301d10.png)
+
+## Key Features
+
+* Workspaces - Organize your queries in workspaces
+* Query lists - Save your queries in list
+* Favorites list - keep your favorite queries across workspaces by hand
+* Sparql editor based on Codemirror 6
+* View sparql results in a clear grid table
+* View created_at and modified_at for queries
+
+## How To Use
+
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
 ```bash
-pnpm dev
-# or
-npm run dev
+# Clone this repository
+$ git clone https://github.com/aatauil/sparql-browser-extention.git
+
+# Go into the repository
+$ cd sparql-browser-extention
+
+# Install dependencies
+$ pnpm install
+
+# Build extention
+$ pnpm run build
 ```
 
-Open your browser and load the appropriate development build. For example, if you are developing for the chrome browser, using manifest v3, use: `build/chrome-mv3-dev`.
+### Chrome
 
-You can start editing the popup by modifying `popup.tsx`. It should auto-update as you make changes. To add an options page, simply add a `options.tsx` file to the root of the project, with a react component default exported. Likewise to add a content page, add a `content.ts` file to the root of the project, importing some module and do some logic, then reload the extension on your browser.
+When the extention finished building, open your browser and go to `chrome://extensions`
 
-For further guidance, [visit our Documentation](https://docs.plasmo.com/)
+Enable the developer mode in the top right en click on the appearing `Load unpacked` button. Navigate to the extentions `build/chrome-mv3-prod` directory and press save.
 
-## Making production build
+To see the extention, click on the puzzle piece icon on the Chrome toolbar, and click on your extension. 
 
-Run the following:
+Pro tip: Pin your extension to the Chrome toolbar for easy access by clicking the pin button.
+
+
+## Development
+
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
 ```bash
-pnpm build
-# or
-npm run build
+# Clone this repository
+$ git clone https://github.com/aatauil/sparql-browser-extention.git
+
+# Go into the repository
+$ cd sparql-browser-extention
+
+# Install dependencies
+$ pnpm install
+
+# Build extention
+$ pnpm run dev
 ```
 
-This should create a production bundle for your extension, ready to be zipped and published to the stores.
+When the extention finished building, open your browser and go to `chrome://extensions`
 
-## Submit to the webstores
+Enable the developer mode in the top right en click on the appearing `Load unpacked` button. Navigate to the extentions `build/chrome-mv3-dev` directory and press save.
 
-The easiest way to deploy your Plasmo extension is to use the built-in [bpp](https://bpp.browser.market) GitHub action. Prior to using this action however, make sure to build your extension and upload the first version to the store to establish the basic credentials. Then, simply follow [this setup instruction](https://docs.plasmo.com/framework/workflows/submit) and you should be on your way for automated submission!
+To see the extention, click on the puzzle piece icon on the Chrome toolbar, and click on the extension icon. 
+
+## License
+
+MIT
