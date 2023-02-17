@@ -10,11 +10,12 @@ function Toolbar() {
     try {
     const res = await fetch('https://dbpedia.org/sparql', {
         method: 'POST',
-        body: file.code,
+        body: `query=${encodeURIComponent(file.code)}`,
         headers: {
           'Accept': 'application/sparql-results+json,*/*;q=0.9',
-          'Content-Type': 'application/sparql-query'
+          'Content-Type': 'application/x-www-form-urlencoded	'
         }
+
       })
 
       const output = await res.json();
