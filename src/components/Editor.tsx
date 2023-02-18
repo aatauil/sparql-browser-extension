@@ -31,7 +31,7 @@ function Editor() {
 
       setView(viewCurrent)
     }
-  }, [container, view, file]);
+  }, [container, view, file?.id]);
 
   useEffect(() => {
     if(view) {
@@ -40,9 +40,11 @@ function Editor() {
     }
   }, [file?.id]);
 
-  function onChange(e) {
-    const value = e.state.doc.toString();
-    debounced(value);
+  function onChange(viewUpdate) {
+    if (viewUpdate.docChanged) {
+      const value = viewUpdate.state.doc.toString();
+      debounced(value);
+    }
   }
 
   if(!file) return (
@@ -58,7 +60,7 @@ function Editor() {
 
   return (
     <div ref={container} className="text-base relative flex-1">
-      <div className='absolute top-0 right-0 flex items-center space-x-2 mr-6 mt-4 z-50 shadow-md'>
+      <div className='absolute top-0 right-0 flex items-center space-x-2 mr-6 mt-4 z-10 shadow-md'>
         <CopyToClipboard text={file?.code}>
           <button className='text-zinc-600 bg-white rounded h-12 w-12 flex items-center justify-center border border-zinc-600 hover:bg-zinc-100'>
             <i className="ri-clipboard-line text-xl leading-none"></i>
