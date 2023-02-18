@@ -1,21 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { db } from '../data/db';
 import { useLiveQuery } from "dexie-react-hooks";
+import CreatableSelect from 'react-select/creatable';
 
 function Toolbar() {
   const file = useLiveQuery(() => db.files.where({ focused: 1 }).first());
   const workspace = useLiveQuery(() => db.workspaces.where({ id: file?.workspaceId || -1 }).first(), [file]);
+  const endpoints = useLiveQuery(() => db.endpoints.toArray());
+  const selectedEndpoint = useLiveQuery(() => db.endpoints.where({ focused: 1 }).first());
 
   async function query() {
+    const endpoint = selectedEndpoint ? selectedEndpoint.value : 'https://dbpedia.org/sparql'
     try {
-    const res = await fetch('https://dbpedia.org/sparql', {
+    const res = await fetch(endpoint, {
         method: 'POST',
         body: `query=${encodeURIComponent(file.code)}`,
         headers: {
           'Accept': 'application/sparql-results+json,*/*;q=0.9',
           'Content-Type': 'application/x-www-form-urlencoded	'
         }
-
       })
 
       const output = await res.json();
@@ -39,6 +42,14 @@ function Toolbar() {
   function toggleFavorite() {
     db.files.update(file, {
       favorite: file.favorite == 1 ? 0 : 1
+    })
+  }
+
+  function createEndpoint(value) {
+    db.endpoints.where('focused').equals(1).modify({focused: 0});
+    db.endpoints.add({
+      value: value,
+      focused: 1
     })
   }
 
@@ -79,12 +90,17 @@ function Toolbar() {
             <div className='font-medium'>Run</div>
           </button>
         </div>
-        <div className='flex items-center space-x-2 font-medium px-2 rounded bg-zinc-100 border'>
-          <i className="ri-server-line text-lg"></i>
-          <span>http://localhost:8890/sparql</span> 
-        </div>
-      </div>
+        <CreatableSelect
+            className='w-52 z-20'
+            name="endpoint"
+            options={endpoints}
+            placeholder="Select endpoint..."   
+            onCreateOption={createEndpoint} 
+            value={selectedEndpoint}
+            getOptionLabel={item => item.value}
+          />
 
+      </div>
     </div>
   )
 }
