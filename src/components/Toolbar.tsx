@@ -53,6 +53,11 @@ function Toolbar() {
     })
   }
 
+  function setEndpoint(endpoint) {
+    db.endpoints.where('focused').equals(1).modify({focused: 0});
+    db.endpoints.update(endpoint.id, { focused: 1 });
+  }
+
 
   if(!file) return null; 
 
@@ -91,13 +96,14 @@ function Toolbar() {
           </button>
         </div>
         <CreatableSelect
-            className='w-52 z-20'
+            className='w-60 z-20'
             name="endpoint"
             options={endpoints}
             placeholder="Select endpoint..."   
             onCreateOption={createEndpoint} 
             value={selectedEndpoint}
             getOptionLabel={item => item.value}
+            onChange={setEndpoint}
           />
 
       </div>
