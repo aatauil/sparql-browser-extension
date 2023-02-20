@@ -18,8 +18,6 @@
     "react": "18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-data-grid": "7.0.0-beta.22",
-    "react-dnd": "^16.0.1",
-    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "18.2.0",
     "react-split": "^2.0.14",
     "remixicon": "^2.5.0",
