@@ -36,5 +36,23 @@
 }
 
 .rdg-cell-resizable::after {
-  @apply bg-zinc-200
+  @apply bg-zinc-100
+}
+
+.gutter {
+  background-color: #eee;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transition: background-color 0.5s
+}
+
+.gutter:hover {
+  background-color: rgb(75, 143, 225);
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.gutter.gutter-vertical {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+  cursor: row-resize;
 }

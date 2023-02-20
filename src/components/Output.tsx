@@ -18,7 +18,7 @@ function Output() {
   }
 
   return (
-    <div className='flex-1 border-t border-zinc-300  bg-zinc-100'> 
+    <div className='h-full border-t border-zinc-300 bg-zinc-100'> 
       <div className='flex items-center justify-between p-2'>
         <div className='font-medium text-zinc-700'>Results</div>
         <button onClick={clearOutput} className='text-zinc-800 bg-zinc-200 font-medium px-4 py-1 rounded border border-zinc-300'>Clear output</button>
@@ -40,7 +40,7 @@ function Output() {
 
 function EmptyStateOutput() {
   return (
-    <div className='flex-1 border-t border-zinc-200 bg-zinc-100'> 
+    <div className='h-full border-t border-zinc-200 bg-zinc-100'> 
       <div className='p-2 h-full'>
         <div className='font-medium text-zinc-700'>Results</div>
         <div className='flex items-center justify-center h-full text-center'>
