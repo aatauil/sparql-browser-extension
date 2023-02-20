@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { SparqlEditor } from 'sparql-editor';
+import { createSparqlEditor } from 'sparql-editor';
 import { db } from '../data/db';
 import { useDebouncedCallback } from 'use-debounce';
 import { useLiveQuery } from "dexie-react-hooks";
@@ -23,7 +23,7 @@ function Editor() {
 
   useEffect(() => {
     if(file && !view) {
-      const viewCurrent = new SparqlEditor({
+      const viewCurrent = createSparqlEditor({
         parent: container.current,
         onChange: onChange,
         doc: file.code
