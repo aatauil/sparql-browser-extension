@@ -7,7 +7,7 @@ function SbFiles() {
   const fileInput = useRef()
 
   const [isCreating, setIsCreating] = useState(false);
-  const [fileName, setFileName] = useState();
+  const [fileName, setFileName] = useState("");
 
   const workspace = useLiveQuery(() => db.workspaces.where({ focused: 1 }).first());
   const files = useLiveQuery(() => db.files.where({ workspaceId: workspace?.id || -1 }).toArray(), [workspace]);
@@ -42,14 +42,6 @@ function SbFiles() {
     });
   }
 
-  function deleteFile(fileId) {
-    db.files.delete(fileId);
-  }
-
-  function setFile(fileId) {
-    db.files.where('focused').equals(1).modify({focused: 0});
-    db.files.update(fileId, { focused: 1 });
-  }
 
   function isFocused(value) {
     if(value) {
@@ -87,16 +79,81 @@ function SbFiles() {
           </div> 
         }
         {files?.map((file, index) => (
-          <div key={index} onClick={() => setFile(file.id)} className={`flex items-center space-x-1 cursor-pointer border text-xs p-1 rounded ${file.focused && "bg-zinc-100 text-black font-medium text-zinc-800"}`} >
-            <i className={`ri-file-list-2-line text-base ${file.focused && "text-blue-700"}`}></i>
-            <div className='flex-1 text-ellipsis overflow-hidden whitespace-nowrap' >{file.name}</div>
-            <button className='hover:text-red-500 rounded-full text-gray-700 flex items-center justify-center h-5 w-5 ' onClick={() => deleteFile(file.id)}>
-              <i className="ri-close-line "></i>
-            </button> 
-          </div> 
+          <FileListItem 
+            key={file.id}
+            file={file} 
+          />
         ))}
       </div>
     </div>
+  )
+}
+
+function FileListItem({file}) {
+  const fileInput = useRef()
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [fileName, setFileName] = useState(file.name || "");
+
+  useOnClickOutside(fileInput, () => {
+    setIsEditing(false)
+    setFileName(file.name)
+  })
+
+  function deleteFile(fileId) {
+    db.files.delete(fileId);
+  }
+
+  function setFile(fileId) {
+    db.files.where('focused').equals(1).modify({focused: 0});
+    db.files.update(fileId, { focused: 1 });
+  }
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      setIsEditing(false)
+      setFileName(file.name)
+    }
+    if (event.key === 'Enter') {
+      updateFileName()
+      setIsEditing(false)
+    }
+  };
+
+  function updateFileName() {
+    const now = new Date()
+
+    const humanDate = now.toLocaleString("en-GB", {
+      month: "long",
+      day: "numeric",
+    });
+
+    const name = fileName?.length ? fileName : `untitled query - ${humanDate}`;
+
+    db.files.update(file.id , {
+      name: name 
+    })
+
+    setFileName(name)
+  }
+
+  return (
+    <>
+      {isEditing ?
+       <div ref={fileInput} onClick={() => setFile(file.id)} onDoubleClick={() => setIsEditing(true)} className={`flex items-center space-x-1 cursor-pointer border text-xs p-1 rounded ${file.focused && "bg-zinc-100 text-black font-medium text-zinc-800"}`} >
+          <i className={`ri-file-list-2-line text-base ${file.focused && "text-blue-700"}`}></i>
+          <input autoFocus type="text" value={fileName} onChange={(e) => setFileName(e.target.value)} onKeyDown={handleKeyDown} className='w-full p-1 pl-0 rounded border-none focus:ring-0 text-xs' placeholder='Untitled query'/>
+        </div> 
+        :
+        <div onClick={() => setFile(file.id)} onDoubleClick={() => setIsEditing(true)} className={`flex items-center space-x-1 cursor-pointer border text-xs p-1 rounded ${file.focused && "bg-zinc-100 text-black font-medium text-zinc-800"}`} >
+          <i className={`ri-file-list-2-line text-base ${file.focused && "text-blue-700"}`}></i>
+          <div className='flex-1 text-ellipsis overflow-hidden whitespace-nowrap' >{file.name}</div>
+          <button className='hover:text-red-500 rounded-full text-gray-700 flex items-center justify-center h-5 w-5' onClick={() => deleteFile(file.id)}>
+            <i className="ri-close-line"></i>
+          </button> 
+        </div> 
+      }
+    </>
   )
 }
 
