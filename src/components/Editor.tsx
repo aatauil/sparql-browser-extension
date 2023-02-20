@@ -26,7 +26,7 @@ function Editor() {
       const viewCurrent = createSparqlEditor({
         parent: container.current,
         onChange: onChange,
-        doc: file.code
+        value: file.code
       })
 
       setView(viewCurrent)
@@ -40,11 +40,8 @@ function Editor() {
     }
   }, [file?.id]);
 
-  function onChange(viewUpdate) {
-    if (viewUpdate.docChanged) {
-      const value = viewUpdate.state.doc.toString();
-      debounced(value);
-    }
+  function onChange(value, viewUpdate) {
+    debounced(value);
   }
 
   if(!file) return (

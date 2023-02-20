@@ -23,7 +23,7 @@
     "react-dom": "18.2.0",
     "react-split": "^2.0.14",
     "remixicon": "^2.5.0",
-    "sparql-editor": "0.0.6-alpha",
+    "sparql-editor": "0.0.7-alpha",
     "tailwindcss": "3.2.4",
     "use-debounce": "^9.0.3"
   },
