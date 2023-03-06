@@ -7,7 +7,8 @@ import DataGrid from 'react-data-grid';
 function Output() {
 
   const file = useLiveQuery(() => db.files.where({ focused: 1 }).first());
-  if(!file?.output) return <EmptyStateOutput />;
+
+  if(!file?.output?.length) return <EmptyStateOutput />;
 
   const {columns, rows} = parseForGrid(file?.output)
 
