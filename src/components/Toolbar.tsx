@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { db } from '../data/db';
 import { useLiveQuery } from "dexie-react-hooks";
 import CreatableSelect from 'react-select/creatable';
+import { formatDuration } from '../utils/formatDuration';
 
 function Toolbar() {
   const file = useLiveQuery(() => db.files.where({ focused: 1 }).first());
@@ -12,22 +13,40 @@ function Toolbar() {
   async function query() {
     const endpoint = selectedEndpoint ? selectedEndpoint.value : 'https://dbpedia.org/sparql'
     try {
-    const res = await fetch(endpoint, {
-        method: 'POST',
-        body: `query=${encodeURIComponent(file.code)}`,
-        headers: {
-          'Accept': 'application/sparql-results+json,*/*;q=0.9',
-          'Content-Type': 'application/x-www-form-urlencoded	'
-        }
+      db.files.update(file, {
+        isLoading: true,
+        error: null,
+        output: null,
       })
+      
+      const start = performance.now()
+
+      const res = await fetch(endpoint, {
+          method: 'POST',
+          body: `query=${encodeURIComponent(file.code)}`,
+          headers: {
+            'Accept': 'application/sparql-results+json,*/*;q=0.9',
+            'Content-Type': 'application/x-www-form-urlencoded	'
+          }
+        })
 
       const output = await res.json();
 
+      const end = performance.now();
+
+      const duration = formatDuration(end - start);
+        
       db.files.update(file, {
-        output: output.results.bindings
+        output: output.results.bindings,
+        isLoading: false,
+        duration: duration
       })
     } catch(err)  {
-      console.dir(err)
+      db.files.update(file, {
+        output: "",
+        isLoading: false,
+        error: err.message,
+      })
     }
   }
 
