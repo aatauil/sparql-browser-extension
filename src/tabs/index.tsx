@@ -13,17 +13,20 @@ function index() {
       <div className="bg-white h-screen w-screen max-h-screen max-w-screen overflow-hidden">
         <div className="flex h-full w-full">
           <SideBar/>
-          <div className="flex-1 flex flex-col overflow-hidden h-full">
-            <Toolbar/>
+          <div className="flex-1 flex flex-col overflow-hidden h-full relative">
             <Split
               className="split h-full"
               direction="vertical"
-              minSize={40}
+              minSize={0}
+              snapOffset={10}
               gutterSize={5}
               gutterAlign="start"
               dragInterval={1} >
-              <Editor/>
-              <div className="">
+              <div className="relative z-10">
+                <Toolbar/>  
+                <Editor/>
+              </div>
+              <div className="relative z-30">
                 <Output/>
               </div>
             </Split>
