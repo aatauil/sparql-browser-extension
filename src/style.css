@@ -11,6 +11,7 @@
 }
 
 .cm-gutter {
+  z-index: 5 !important;
   background-color: white;
 }
 
@@ -40,6 +41,8 @@
 }
 
 .gutter {
+  position: relative;
+  z-index: 20;
   background-color: #eee;
   background-repeat: no-repeat;
   background-position: 50%;
