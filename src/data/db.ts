@@ -4,7 +4,7 @@ export const db = new Dexie('myDatabase');
 
 db.version(1).stores({
   workspaces: '++id, name, focused, created',
-  files: '++id, name, workspaceId, focused, code, output, created, modified, favorite, duration, error, isLoading',
+  files: '++id, name, workspaceId, focused, code, output, created, modified, favorite, status, statusMessage, errorMessage, isLoading, duration',
   endpoints: '++id, value, focused'
 })
 
