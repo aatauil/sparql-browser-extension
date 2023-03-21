@@ -12,13 +12,17 @@ function Toolbar() {
 
   async function query() {
     const endpoint = selectedEndpoint ? selectedEndpoint.value : 'https://dbpedia.org/sparql'
-    try {
-      db.files.update(file, {
-        isLoading: true,
-        error: null,
-        output: null,
-      })
-      
+
+    db.files.update(file, {
+      isLoading: true,
+      status: null,
+      statusMessage: null,
+      errorMessage: null,
+      output: null,
+      duration: null
+    })
+
+    try { 
       const start = performance.now()
 
       const res = await fetch(endpoint, {
@@ -30,22 +34,41 @@ function Toolbar() {
           }
         })
 
+      if(res.ok == false) {
+        const end = performance.now();
+        const duration = formatDuration(end - start);
+
+        const errorMessage = await res.text()
+
+        db.files.update(file, {
+          status: res.status,
+          statusMessage: res.statusText,
+          errorMessage: errorMessage,
+          isLoading: false,
+          duration: duration
+        })
+
+        return;
+      }
+
       const output = await res.json();
 
       const end = performance.now();
-
       const duration = formatDuration(end - start);
-        
+      
       db.files.update(file, {
-        output: output.results.bindings,
+        status: res.status,
+        statusMessage: res.statusText,
+        output: output,
         isLoading: false,
         duration: duration
       })
+      
     } catch(err)  {
       db.files.update(file, {
-        output: "",
+        errorMessage: err.stack,
+        statusMessage: err.message,
         isLoading: false,
-        error: err.message,
       })
     }
   }
