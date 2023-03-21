@@ -71,7 +71,7 @@ function SbFiles() {
           <i className="ri-add-line text-sm"></i>
         </button>
       </div>
-      <div className='p-2 space-y-1'>
+      <div className='p-2 space-y-px'>
         {isCreating &&
           <div ref={fileInput} className={`flex items-center space-x-1 cursor-pointer text-xs p-1 rounded`} >
             <i className="ri-file-list-2-line text-base"></i>
@@ -140,12 +140,12 @@ function FileListItem({file}) {
   return (
     <>
       {isEditing ?
-       <div ref={fileInput} onClick={() => setFile(file.id)} onDoubleClick={() => setIsEditing(true)} className={`flex items-center space-x-1 cursor-pointer border text-xs p-1 rounded ${file.focused && "bg-zinc-100 text-black font-medium text-zinc-800"}`} >
+       <div ref={fileInput} onClick={() => setFile(file.id)} onDoubleClick={() => setIsEditing(true)} className={`flex items-center space-x-1 cursor-pointer text-xs p-1 rounded ${file.focused && "bg-zinc-100 text-black font-medium text-zinc-800"}`} >
           <i className={`ri-file-list-2-line text-base ${file.focused && "text-blue-700"}`}></i>
           <input autoFocus type="text" value={fileName} onChange={(e) => setFileName(e.target.value)} onKeyDown={handleKeyDown} className='w-full p-1 pl-0 rounded border-none focus:ring-0 text-xs' placeholder='Untitled query'/>
         </div> 
         :
-        <div onClick={() => setFile(file.id)} onDoubleClick={() => setIsEditing(true)} className={`flex items-center space-x-1 cursor-pointer border text-xs p-1 rounded ${file.focused && "bg-zinc-100 text-black font-medium text-zinc-800"}`} >
+        <div onClick={() => setFile(file.id)} onDoubleClick={() => setIsEditing(true)} className={`flex items-center space-x-1 cursor-pointer text-xs p-1 rounded ${file.focused && "bg-zinc-100 text-black font-medium text-zinc-800"}`} >
           <i className={`ri-file-list-2-line text-base ${file.focused && "text-blue-700"}`}></i>
           <div className='flex-1 text-ellipsis overflow-hidden whitespace-nowrap' >{file.name}</div>
           <button className='hover:text-red-500 rounded-full text-gray-700 flex items-center justify-center h-5 w-5' onClick={() => deleteFile(file.id)}>

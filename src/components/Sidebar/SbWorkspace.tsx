@@ -66,7 +66,7 @@ function SbWorkspace() {
         </button>
       </div>
 
-      <div className='p-2 space-y-1'>
+      <div className='p-2 space-y-px'>
         {isCreatingWs ?
           <div ref={wsInput} className='flex items-center space-x-1 cursor-pointer border text-xs p-1 rounded font-medium'>
             <i className="ri-layout-2-line text-base"></i>
@@ -77,7 +77,7 @@ function SbWorkspace() {
         }
 
         {workspaces?.map((ws, index) => (
-          <div key={index} onClick={() => setWorkspace(ws)} className={`flex items-center space-x-1.5 cursor-pointer border px-1 text-xs rounded font-medium hover:bg-zinc-100 ${ws.focused && "bg-blue-100 text-black border-transparent hover:bg-blue-100"}`} >
+          <div key={index} onClick={() => setWorkspace(ws)} className={`flex items-center space-x-1.5 cursor-pointer px-1 text-xs rounded font-medium hover:bg-zinc-100 ${ws.focused && "bg-blue-100 text-black border-transparent hover:bg-blue-100"}`} >
             <i className={`ri-layout-2-line text-lg ${ws.focused && "text-blue-700"}`}></i>
             <div className='flex-1 text-ellipsis overflow-hidden whitespace-nowrap'>{ws.name}</div>
             <button className='hover:text-red-500 rounded-full text-gray-700 flex items-center justify-center h-5 w-5 '>
