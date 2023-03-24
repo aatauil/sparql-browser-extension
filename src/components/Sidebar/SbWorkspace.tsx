@@ -58,7 +58,7 @@ function SbWorkspace() {
   };
 
   return (
-    <div className='py-4'>
+    <div className='py-4 relative'>
       <div className='flex items-center justify-between px-3 mb-2'>
         <h2 className='text-sm font-medium text-zinc-900'>Workspaces</h2> 
         <button className='bg-blue-600 px-1 py-.5 text-white text-md rounded hover:bg-blue-500' onClick={() => setIsCreatingWs(true)}>
@@ -88,10 +88,10 @@ function SbWorkspace() {
       </div>
 
       { selectedWs && 
-        <div className="relative z-10" role="dialog" aria-modal="true">
+        <div className="relative z-50" role="dialog" aria-modal="true">
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
     
-          <div className="fixed inset-0 z-10 overflow-y-auto" onClick={() => setSelectedWs(false)}>
+          <div className="fixed inset-0 overflow-y-auto" onClick={() => setSelectedWs(false)}>
             <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0" >
               <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" onClick={(e) => e.stopPropagation()}>

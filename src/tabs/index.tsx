@@ -22,11 +22,11 @@ function index() {
               gutterSize={5}
               gutterAlign="start"
               dragInterval={1} >
-              <div className="relative z-10">
+              <div>
                 <Toolbar/>  
                 <Editor/>
               </div>
-              <div className="relative z-30">
+              <div className="relative z-40">
                 <Output/>
               </div>
             </Split>
