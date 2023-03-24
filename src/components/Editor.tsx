@@ -3,7 +3,6 @@ import { createSparqlEditor } from 'sparql-editor';
 import { db } from '../data/db';
 import { useDebouncedCallback } from 'use-debounce';
 import { useLiveQuery } from "dexie-react-hooks";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 function Editor() {
   const container = useRef()
@@ -56,15 +55,7 @@ function Editor() {
   )
 
   return (
-    <div ref={container} className="text-base relative h-full pb-24">
-      <div className='absolute top-0 right-0 flex items-center space-x-2 mr-6 mt-4 z-10 shadow-md'>
-        <CopyToClipboard text={file?.code}>
-          <button className='text-zinc-600 bg-white rounded h-12 w-12 flex items-center justify-center border border-zinc-600 hover:bg-zinc-100'>
-            <i className="ri-clipboard-line text-xl leading-none"></i>
-          </button>
-        </CopyToClipboard>
-      </div>
-    </div>
+    <div ref={container} className="text-base relative h-full pb-24"></div>
   )
 }
 
