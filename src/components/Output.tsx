@@ -21,10 +21,8 @@ function Output() {
 
   return (
     <div className='h-full border-t border-zinc-200 bg-zinc-100'> 
-      <div className='p-2 h-full'>
-        <OutputToolbar file={file} />
-        <OutputZone file={file} />
-      </div>
+      <OutputToolbar file={file} />
+      <OutputZone file={file} />
     </div>
   )
 }
@@ -37,7 +35,7 @@ function OutputToolbar({ file }) {
   }
 
   return (
-    <div className='flex items-center space-x-2'>
+    <div className='flex items-center space-x-2 border-b p-2 border-zinc-300'>
       {file.isLoading ?
         <Spinner />
         :
@@ -62,7 +60,7 @@ function OutputZone({ file }) {
 
   if(file.errorMessage) {
     return (
-      <div className='h-full'>
+      <div className='h-full p-2'>
         <div className='p-4 mt-2 bg-zinc-200 font-medium text-zinc-800 rounded whitespace-pre-line'>{file.errorMessage}</div>
       </div>
     )
@@ -71,9 +69,9 @@ function OutputZone({ file }) {
   const {columns, rows} = parseForGrid(file.output)
 
   return (
-    <div className='p-2 flex flex-col h-full'>
+    <div className='flex flex-col h-full'>
       <DataGrid 
-        className='flex-1 border border-zinc-300 text-xs rounded-lg'
+        className='flex-1 text-xs bg-zinc-100 pb-12'
         columns={columns} 
         rows={rows} 
         resizable={true}

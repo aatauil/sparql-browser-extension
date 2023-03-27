@@ -98,7 +98,7 @@ function Toolbar() {
   if(!file) return null; 
 
   return (
-    <div className='w-full flex items-center justify-between p-4 border-b border-zinc-300'>
+    <div className='w-full flex items-center justify-between p-4 border-b border-neutral-400'>
       <div className='flex-1 space-y-2'>
         <div className='flex items-center space-x-2'>
           <button onClick={() => toggleFavorite()}>
@@ -125,8 +125,8 @@ function Toolbar() {
 
       </div>
       <div className='space-y-1'>
-        <div className='flex items-center justify-end space-x-2 flex'>
-          <button onClick={query} className='flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white text-sm px-2 py-1.5 pr-6 rounded'>
+        <div className='flex items-center justify-end space-x-2'>
+          <button onClick={query} className='flex items-center space-x-2 bg-green-600 border-2 border-green-700 hover:bg-green-700 text-white text-sm px-2 py-1.5 pr-6 rounded'>
             <i className="ri-play-line text-lg leading-none"></i>
             <div className='font-medium'>Run</div>
           </button>

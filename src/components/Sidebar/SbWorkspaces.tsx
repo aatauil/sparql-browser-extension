@@ -3,7 +3,7 @@ import useOnClickOutside from '../../hooks/useOnClickOutside';
 import { db } from '../../data/db';
 import { useLiveQuery } from "dexie-react-hooks";
 
-function SbWorkspace() {
+function SbWorkspaces() {
   const wsInput = useRef()
 
   const [selectedWs, setSelectedWs] = useState(false);
@@ -58,10 +58,10 @@ function SbWorkspace() {
   };
 
   return (
-    <div className='py-4 relative'>
-      <div className='flex items-center justify-between px-3 mb-2'>
-        <h2 className='text-sm font-medium text-zinc-900'>Workspaces</h2> 
-        <button className='bg-blue-600 px-1 py-.5 text-white text-md rounded hover:bg-blue-500' onClick={() => setIsCreatingWs(true)}>
+    <div className='pb-4 relative'>
+      <div className='flex items-center justify-between pl-4 pr-3 py-2 bg-neutral-100 mb-2'>
+        <h2 className='text-xs font-medium text-zinc-700 uppercase'>Workspaces</h2> 
+        <button className='bg-neutral-200 px-1 py-.5 text-zinc-600 text-md rounded hover:bg-zinc-300 hover:text-zinc-900' onClick={() => setIsCreatingWs(true)}>
           <i className="ri-add-line text-sm"></i>
         </button>
       </div>
@@ -77,7 +77,7 @@ function SbWorkspace() {
         }
 
         {workspaces?.map((ws, index) => (
-          <div key={index} onClick={() => setWorkspace(ws)} className={`flex items-center space-x-1.5 cursor-pointer px-1 text-xs rounded font-medium hover:bg-zinc-100 ${ws.focused && "bg-blue-100 text-black border-transparent hover:bg-blue-100"}`} >
+          <div key={index} onClick={() => setWorkspace(ws)} className={`flex items-center space-x-1.5 cursor-pointer px-1 text-xs rounded font-medium hover:bg-zinc-100 hover:text-zinc-800 ${ws.focused && "bg-blue-100 text-black hover:bg-blue-100 border border-blue-200"}`} >
             <i className={`ri-layout-2-line text-lg ${ws.focused && "text-blue-700"}`}></i>
             <div className='flex-1 text-ellipsis overflow-hidden whitespace-nowrap'>{ws.name}</div>
             <button className='hover:text-red-500 rounded-full text-gray-700 flex items-center justify-center h-5 w-5 '>
@@ -123,4 +123,4 @@ function SbWorkspace() {
   )
 }
 
-export default SbWorkspace
+export default SbWorkspaces
