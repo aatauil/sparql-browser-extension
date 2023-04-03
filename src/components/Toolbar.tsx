@@ -176,85 +176,73 @@ function EndpointModal({ setEditingEndpoint, endpoints }) {
       <div className="fixed inset-0 overflow-y-auto" onClick={() => setEditingEndpoint(false)}>
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0" >
           <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl">
-            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" onClick={(e) => e.stopPropagation()}>
-              <div className="flex items-center space-x-3 mb-4 border-b pb-4">
+            <div className="bg-white" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center space-x-3 border-b border-gray-300 p-4">
                 <h3 className="flex-1 text-lg font-base leading-6 text-gray-900" id="modal-title">Manage endpoints</h3>
                 <button type="button" onClick={() => setEditingEndpoint(false)} className="rounded-md bg-zinc-100 px-3 py-1 text-base font-medium text-gray-700  hover:bg-gray-200" ><i className="ri-close-line"></i></button>
-
               </div>
-              <div className='p-4 pt-1 rounded-lg bg-zinc-100 mb-4'>
-                <h4 className='px-1 py-3 text-zinc-500 text-sm'>Add endpoint</h4>
+              <div className='pb-4'>
+                <table className="min-w-full divide-y divide-gray-300 text-xs">
+                  <thead className='bg-zinc-100'>
+                    <tr>
+                      <th scope="col" className="px-4 py-2 text-left font-medium tracking-wide text-gray-600">Label</th>
+                      <th scope="col" className="px-4 py-2 text-left font-medium tracking-wide text-gray-600">Value</th>
+                      <th scope="col" className="px-4 py-2 text-left font-medium tracking-wide text-gray-600"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className='text-zinc-700'>
+                      <td className="whitespace-nowrap px-4 py-2">
+                        dbpedia
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-2">https://dbpedia.org/sparql</td>
+                      <td className="whitespace-nowrap px-4 py-2 flex justify-end">
+                        <span className='px-3 py-1 bg-zinc-200 rounded'>default</span>
+                      </td>
+                    </tr>
+                    {endpoints.map((endpoint, index) => {
+                      return (
+                        <tr key={index} className='text-zinc-700'>
+                          <td className="whitespace-nowrap px-4 py-2">{endpoint.label}</td>
+                          <td className="whitespace-nowrap px-3 py-2">{endpoint.value}</td>
+                          <td className="whitespace-nowrap px-3 py-2 flex justify-end">
+                            <button onClick={() => deleteEndpoint(endpoint.id)}><i className="ri-delete-bin-2-line text-lg text-right leading-none text-zinc-700 hover:text-red-700"></i></button>
+                          </td>
+                        </tr>
+                      )    
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <div className='p-4 border-t border-gray-300 bg-zinc-50'>
                 <div className='flex items-center space-x-2'>
-                  <div className="relative">
-                    <label
-                      htmlFor="label"
-                      className="sr-only"
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      className="block w-full rounded-md py-1.5 text-gray-900 border border-zinc-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-blue-600 text-sm sm:leading-6"
-                      placeholder="dbpedia"
-                      value={label}
-                      onChange={(e) => setLabel(e.target.value)}
+                  <div class="relative w-1/5">
+                    <input 
+                      id="small_outlined"   
+                      type="text" 
+                      class="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-white rounded border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+                      placeholder=" "
+                      value={label} 
+                      onChange={(e) => setLabel(e.target.value)} 
                     />
+                    <label for="small_outlined" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Label</label>
                   </div>
-                  <div className="relative">
-                    <label
-                      htmlFor="value"
-                      className="sr-only"
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      className="block w-full rounded-md py-1.5 text-gray-900 border border-zinc-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-blue-600 text-sm sm:leading-6"
-                      placeholder="https://dbpedia.org/sparql"
+                  <div class="relative flex-1">
+                    <input 
+                      id="small_outlined"   
+                      type="text" 
+                      class="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-white rounded border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+                      placeholder=" "
                       value={value}
-                      onChange={(e) => setValue(e.target.value)}
+                      onChange={(e) => setValue(e.target.value)} 
                     />
+                    <label for="small_outlined" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Value</label>
                   </div>
                   <button onClick={() => createEndpoint()} className='flex items-center border-1 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white rounded px-2 py-1 leading-none'>
                     <i className="ri-add-line text-base"></i>
                   </button>
                 </div>
               </div>
-              <table className="min-w-full divide-y divide-gray-300 text-xs">
-                <thead>
-                  <tr>
-                    <th scope="col" className="py-3 pl-4 pr-3 text-left font-medium tracking-wide text-gray-500 sm:pl-0">Label</th>
-                    <th scope="col" className="px-3 py-3 text-left font-medium tracking-wide text-gray-500">Value</th>
-                    <th scope="col" className="px-3 py-3 text-left font-medium tracking-wide text-gray-500"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className='text-zinc-700'>
-                    <td className="whitespace-nowrap px-2 py-2">
-                      dbpedia
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-2">https://dbpedia.org/sparql</td>
-                    <td className="whitespace-nowrap px-3 py-2 flex justify-end">
-                      <span className='px-2 py-1 bg-zinc-200 rounded'>default</span>
-                    </td>
-                  </tr>
-                  {endpoints.map((endpoint, index) => {
-                    return (
-                      <tr key={index} className='text-zinc-700'>
-                        <td className="whitespace-nowrap px-2 py-2">{endpoint.label}</td>
-                        <td className="whitespace-nowrap px-3 py-2">{endpoint.value}</td>
-                        <td className="whitespace-nowrap px-3 py-2 flex justify-end">
-                          <button onClick={() => deleteEndpoint(endpoint.id)}><i className="ri-delete-bin-2-line text-lg text-right leading-none text-zinc-700 hover:text-red-700"></i></button>
-                        </td>
-                      </tr>
-                    )    
-                  })}
-                </tbody>
-              </table>
             </div>
           </div>
         </div>
