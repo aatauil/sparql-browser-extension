@@ -3,8 +3,8 @@ import Dexie from 'dexie';
 export const db = new Dexie('myDatabase');
 
 db.version(1).stores({
-  workspaces: '++id, name, focused, created',
-  files: '++id, name, workspaceId, focused, code, output, created, modified, favorite, status, statusMessage, errorMessage, isLoading, duration',
+  databases: '++id, name, focused, created',
+  files: '++id, name, databaseId, focused, code, output, created, modified, favorite, status, statusMessage, errorMessage, isLoading, duration',
   endpoints: '++id, value, label, focused'
 })
 

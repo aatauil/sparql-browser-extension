@@ -8,7 +8,7 @@ function Toolbar() {
   const [editingEndpoint, setEditingEndpoint] = useState(false)
 
   const file = useLiveQuery(() => db.files.where({ focused: 1 }).first());
-  const workspace = useLiveQuery(() => db.workspaces.where({ id: file?.workspaceId || -1 }).first(), [file]);
+  const database = useLiveQuery(() => db.databases.where({ id: file?.databaseId || -1 }).first(), [file]);
   const endpoints = useLiveQuery(() => db.endpoints.toArray());
   const selectedEndpoint = useLiveQuery(() => db.endpoints.where({ focused: 1 }).first());
 
@@ -107,10 +107,10 @@ function Toolbar() {
           <span className='text-xl font-medium'>{file.name}</span>
         </div>
         <div className='flex items-center space-x-4'>
-          {workspace && 
+          {database && 
             <div className='flex items-center space-x-1 font-medium text-zinc-800 border px-2 rounded bg-zinc-100'>
               <i className="ri-layout-2-line text-base text-blue-600"></i>
-              <span>{workspace?.name}</span>
+              <span>{database?.name}</span>
             </div>
           }
           <div className='flex items-center space-x-1 text-zinc-600'>
@@ -216,27 +216,27 @@ function EndpointModal({ setEditingEndpoint, endpoints }) {
               </div>
               <div className='p-4 border-t border-gray-300 bg-zinc-50'>
                 <div className='flex items-center space-x-2'>
-                  <div class="relative w-1/5">
+                  <div className="relative w-1/5">
                     <input 
                       id="small_outlined"   
                       type="text" 
-                      class="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-white rounded border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+                      className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-white rounded border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
                       placeholder=" "
                       value={label} 
                       onChange={(e) => setLabel(e.target.value)} 
                     />
-                    <label for="small_outlined" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Label</label>
+                    <label for="small_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Label</label>
                   </div>
-                  <div class="relative flex-1">
+                  <div className="relative flex-1">
                     <input 
                       id="small_outlined"   
                       type="text" 
-                      class="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-white rounded border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+                      className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-white rounded border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
                       placeholder=" "
                       value={value}
                       onChange={(e) => setValue(e.target.value)} 
                     />
-                    <label for="small_outlined" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Value</label>
+                    <label for="small_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Value</label>
                   </div>
                   <button onClick={() => createEndpoint()} className='flex items-center border-1 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white rounded px-2 py-1 leading-none'>
                     <i className="ri-add-line text-base"></i>

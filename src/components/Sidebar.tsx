@@ -3,15 +3,10 @@ import { db } from '../data/db';
 import { useState } from 'react';
 
 import SbFiles from './Sidebar/SbFiles';
-import SbWorkspaces from './Sidebar/SbWorkspaces';
+import SbDatabases from './Sidebar/SbDatabases';
 import SbFavorites from './Sidebar/SbFavorites';
 
 function Sidebar() {
-
-
- 
- 
-
   function deleteFavorite(file) {
     db.files.update(file, {
       favorite: -1
@@ -26,7 +21,7 @@ function Sidebar() {
 
   return (
     <div className='flex flex-col text-gray-600 h-full w-60 border-r border-neutral-400 shadow-inner'> 
-      <SbWorkspaces />
+      <SbDatabases />
       <SbFiles />
       <SbFavorites />
       <div className='flex-1'></div>

@@ -9,14 +9,14 @@ function SbFiles() {
   const [isCreating, setIsCreating] = useState(false);
   const [fileName, setFileName] = useState("");
 
-  const workspace = useLiveQuery(() => db.workspaces.where({ focused: 1 }).first());
-  const files = useLiveQuery(() => db.files.where({ workspaceId: workspace?.id || -1 }).toArray(), [workspace]);
+  const database = useLiveQuery(() => db.databases.where({ focused: 1 }).first());
+  const files = useLiveQuery(() => db.files.where({ databaseId: database?.id || -1 }).toArray(), [database]);
 
   useOnClickOutside(fileInput, () => {
     setIsCreating(false)
   })
 
-  if(!workspace) return null;
+  if(!database) return null;
 
   async function addFile() {
     const now = new Date()
@@ -37,7 +37,7 @@ function SbFiles() {
       focused: 1,
       favorite: 0,
       created: now,
-      workspaceId: workspace.id,
+      databaseId: database.id,
       modified: now
     });
   }
