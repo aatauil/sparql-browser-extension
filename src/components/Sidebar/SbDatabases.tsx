@@ -4,17 +4,17 @@ import { db } from '../../data/db';
 import { useLiveQuery } from "dexie-react-hooks";
 
 function SbDatabases() {
-  const wsInput = useRef()
+  const dbInput = useRef()
 
-  const [selectedWs, setSelectedWs] = useState(false);
-  const [isCreatingWs, setIsCreatingWs] = useState(false);
-  const [wsName, setWsName] = useState("");
+  const [selectedDb, setSelectedDb] = useState(false);
+  const [isCreatingDb, setIsCreatingDb] = useState(false);
+  const [dbName, setDbName] = useState("");
 
   const databases = useLiveQuery(() => db.databases.toArray());
   const focusedDatabase = useLiveQuery(() => db.databases.where({ focused: 1 }).first());
 
-  useOnClickOutside(wsInput, () => {
-    setIsCreatingWs(false)
+  useOnClickOutside(dbInput, () => {
+    setIsCreatingDb(false)
   })
 
   async function addDatabase() {
@@ -24,7 +24,7 @@ function SbDatabases() {
     db.files.where('focused').equals(1).modify({focused: 0});
 
     db.databases.add({
-      name: wsName,
+      name: dbName,
       focused: 1,
       created: now
     });
@@ -40,58 +40,58 @@ function SbDatabases() {
   }
 
   async function deleteDatabase() {
-    await db.files.where({databaseId: selectedWs.id}).delete();
-    await db.databases.where({id : selectedWs.id}).delete();
-    setSelectedWs(false)
+    await db.files.where({databaseId: selectedDb.id}).delete();
+    await db.databases.where({id : selectedDb.id}).delete();
+    setSelectedDb(false)
   }
   
   const handleKeyDown = (event) => {
     if (event.key === 'Escape') {
-      setIsCreatingWs(false)
-      setWsName("")
+      setIsCreatingDb(false)
+      setDbName("")
     }
     if (event.key === 'Enter') {
       addDatabase()
-      setIsCreatingWs(false)
-      setWsName("")
+      setIsCreatingDb(false)
+      setDbName("")
     }
   };
 
   return (
     <div className='pb-4 relative'>
       <div className='flex items-center justify-between pl-4 pr-3 py-2 bg-neutral-100 mb-2'>
-        <h2 className='text-xs font-medium text-zinc-700 uppercase'>Databases</h2> 
-        <button className='bg-neutral-200 px-1 py-.5 text-zinc-600 text-md rounded hover:bg-zinc-300 hover:text-zinc-900' onClick={() => setIsCreatingWs(true)}>
+        <h2 className='text-xs font-medium text-slate-700 uppercase'>Databases</h2> 
+        <button className='bg-neutral-200 px-1 py-.5 text-slate-600 text-md rounded hover:bg-slate-300 hover:text-slate-900' onClick={() => setIsCreatingDb(true)}>
           <i className="ri-add-line text-sm"></i>
         </button>
       </div>
 
       <div className='p-2 space-y-px'>
-        {isCreatingWs ?
-          <div ref={wsInput} className='flex items-center space-x-1 cursor-pointer border text-xs p-1 rounded font-medium'>
+        {isCreatingDb ?
+          <div ref={dbInput} className='flex items-center space-x-1 cursor-pointer border text-xs p-1 rounded font-medium'>
             <i className="ri-layout-2-line text-base"></i>
-            <input autoFocus type="text" value={wsName} onChange={(e) => setWsName(e.target.value)} onKeyDown={handleKeyDown} className='w-full p-1 pl-0 rounded border-none focus:ring-0 text-xs' placeholder='Database name'/>
+            <input autoFocus type="text" value={dbName} onChange={(e) => setDbName(e.target.value)} onKeyDown={handleKeyDown} className='w-full p-1 pl-0 rounded border-none focus:ring-0 text-xs' placeholder='Database name'/>
           </div>
           : 
           ""
         }
 
-        {databases?.map((ws, index) => (
-          <div key={index} onClick={() => setDatabase(ws)} className={`flex items-center space-x-1.5 cursor-pointer px-1 text-xs rounded font-medium hover:bg-zinc-100 hover:text-zinc-800 ${ws.focused && "bg-blue-100 text-black hover:bg-blue-100 border border-blue-200"}`} >
-            <i className={`ri-layout-2-line text-lg ${ws.focused && "text-blue-700"}`}></i>
-            <div className='flex-1 text-ellipsis overflow-hidden whitespace-nowrap'>{ws.name}</div>
+        {databases?.map((db, index) => (
+          <div key={index} onClick={() => setDatabase(db)} className={`flex items-center space-x-1.5 cursor-pointer px-1 text-xs rounded font-medium hover:bg-slate-100 hover:text-slate-800 ${db.focused && "bg-blue-100 text-black hover:bg-blue-100 border border-blue-200"}`} >
+            <i className={`ri-layout-2-line text-lg ${db.focused && "text-blue-700"}`}></i>
+            <div className='flex-1 text-ellipsis overflow-hidden whitespace-nowrap'>{db.name}</div>
             <button className='hover:text-red-500 rounded-full text-gray-700 flex items-center justify-center h-5 w-5 '>
-              <i className="ri-close-line " onClick={() => setSelectedWs(ws)}></i>
+              <i className="ri-close-line " onClick={() => setSelectedDb(db)}></i>
             </button> 
           </div> 
         ))}
       </div>
 
-      { selectedWs && 
+      { selectedDb && 
         <div className="relative z-50" role="dialog" aria-modal="true">
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
     
-          <div className="fixed inset-0 overflow-y-auto" onClick={() => setSelectedWs(false)}>
+          <div className="fixed inset-0 overflow-y-auto" onClick={() => setSelectedDb(false)}>
             <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0" >
               <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" onClick={(e) => e.stopPropagation()}>
@@ -103,7 +103,7 @@ function SbDatabases() {
                       </svg>
                     </div>
                     <div className="mt-2 text-center sm:ml-4 sm:text-left">
-                      <h3 className="text-lg font-base leading-6 text-gray-900" id="modal-title">Delete Database <span className='font-medium'>{selectedWs.name}</span></h3>
+                      <h3 className="text-lg font-base leading-6 text-gray-900" id="modal-title">Delete Database <span className='font-medium'>{selectedDb.name}</span></h3>
                       <div className="mt-4">
                         <p className="text-sm text-gray-500">Deleting this database will also <strong>delete all queries</strong> inside of it. This action cannot be undone.</p>
                       </div>
@@ -112,7 +112,7 @@ function SbDatabases() {
                 </div>
                 <div className="bg-gray-50 px-2 py-3 flex items-center justify-between">
                   <button type="button" onClick={() => deleteDatabase()} className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Delete permanently</button>
-                  <button type="button" onClick={() => setSelectedWs(false)} className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" >Cancel</button>
+                  <button type="button" onClick={() => setSelectedDb(false)} className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" >Cancel</button>
                 </div>
               </div>
             </div>
