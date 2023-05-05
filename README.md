@@ -20,9 +20,9 @@
 
 ## Key Features
 
-* Workspaces - Organize your queries in workspaces
+* Databases - Keep a list of all your databases
 * Query lists - Save your queries in list
-* Favorites list - keep your favorite queries across workspaces by hand
+* Favorites list - keep your favorite queries across databases by hand
 * Sparql editor based on Codemirror 6
 * View sparql results in a clear grid table
 * View created_at and modified_at for queries

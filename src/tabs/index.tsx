@@ -12,6 +12,11 @@ function index() {
     <div>
       <div className="bg-white h-screen w-screen max-h-screen max-w-screen overflow-hidden">
         <div className="flex h-full w-full">
+          <div className="flex flex-col h-full border-r border-slate-400">
+            <div className="flex items-center justify-center w-10 h-10 border-b border-slate-400">
+              <i className="ri-bubble-chart-line text-blue-600 text-lg"></i>
+            </div>
+          </div>
           <SideBar/>
           <div className="flex-1 flex flex-col overflow-hidden h-full relative">
             <Split
@@ -36,5 +41,4 @@ function index() {
     </div>
   )
 }
-
 export default index

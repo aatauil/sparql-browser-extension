@@ -18,7 +18,7 @@ specifiers:
   react-select: ^5.7.0
   react-split: ^2.0.14
   remixicon: ^2.5.0
-  sparql-editor: 0.1.0
+  sparql-editor: 0.4.0
   tailwindcss: 3.2.4
   typescript: 4.9.4
   use-debounce: ^9.0.3
@@ -33,7 +33,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-split: 2.0.14_react@18.2.0
   remixicon: 2.5.0
-  sparql-editor: 0.1.0
+  sparql-editor: 0.4.0
   tailwindcss: 3.2.4_postcss@8.4.21
   use-debounce: 9.0.3_react@18.2.0
 
@@ -2768,8 +2768,8 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /codemirror-lang-sparql/0.3.0:
-    resolution: {integrity: sha512-QTdyjd7qvy6gJZ8VyOoKB6uVxMVFwT8iion8L4OlMxqcaQ/yQuBLdSBgosJuvHP5jciwGik0Z/bHuUnfmJq/cw==}
+  /codemirror-lang-sparql/0.4.0:
+    resolution: {integrity: sha512-ngb6JUfC//NpA2/W+7CHOoeh5tmXh1vLGPmXkuM4D5/Bn2+8f4vDfkpC7HppSqLB2JcZRrMnY2vvzmw9TbBa2w==}
     dependencies:
       '@codemirror/language': 6.4.0
       '@lezer/highlight': 1.1.3
@@ -5196,11 +5196,11 @@ packages:
     deprecated: Please use @jridgewell/sourcemap-codec instead
     dev: false
 
-  /sparql-editor/0.1.0:
-    resolution: {integrity: sha512-2ssPKuYD/dsw91VM9Cd8rdHbTO0R+5VUFk5g3BIzrQ56HInl3zSOxw5Bl4NF3TTmP1Hhsn9TO9UaBPpja2h+hA==}
+  /sparql-editor/0.4.0:
+    resolution: {integrity: sha512-OasAA4AoVbJ4FZSRmvtZQSF7W5oZoRHXn2ccCEVCFeSxZ8NTb079LstwqaxBv1z1D01N2cr49HyH+I6N/bi3fQ==}
     dependencies:
       codemirror: 6.0.1
-      codemirror-lang-sparql: 0.3.0
+      codemirror-lang-sparql: 0.4.0
       sparqljs: 3.6.2
     dev: false
 
