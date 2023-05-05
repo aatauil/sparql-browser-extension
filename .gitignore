@@ -26,7 +26,6 @@ yarn-error.log*
 .env*
 
 out/
-build/
 dist/
 
 # plasmo - https://www.plasmo.com
