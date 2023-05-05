@@ -32,8 +32,12 @@ export function parseForGrid(data) {
     const newRow = {
       ID: index + 1
     };
-
     variables.forEach((key) => {
+      if(results.length > 200) {
+        newRow[key] = row[key]?.value
+        return;
+      }
+
       let shortened;
 
       if(row[key]?.type == 'uri') {
