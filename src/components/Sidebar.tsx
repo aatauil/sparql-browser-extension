@@ -7,18 +7,6 @@ import SbDatabases from './Sidebar/SbDatabases';
 import SbFavorites from './Sidebar/SbFavorites';
 
 function Sidebar() {
-  function deleteFavorite(file) {
-    db.files.update(file, {
-      favorite: -1
-    })
-  }
-
-  function setFile(fileId) {
-    db.files.where('focused').equals(1).modify({focused: 0});
-    db.files.update(fileId, { focused: 1 });
-  }
-
-
   return (
     <div className='flex flex-col text-gray-600 h-full w-60 border-r border-neutral-400 shadow-inner'> 
       <SbDatabases />
