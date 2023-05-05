@@ -7,13 +7,14 @@ specifiers:
   '@types/node': 18.11.18
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.10
+  ag-grid-community: ^29.3.4
+  ag-grid-react: ^29.3.4
   dexie: ^3.2.2
   dexie-react-hooks: ^1.1.1
   plasmo: 0.62.1
   postcss: 8.4.21
   prettier: 2.8.2
   react: 18.2.0
-  react-data-grid: 7.0.0-beta.22
   react-dom: 18.2.0
   react-select: ^5.7.0
   react-split: ^2.0.14
@@ -25,11 +26,12 @@ specifiers:
 
 dependencies:
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
+  ag-grid-community: 29.3.4
+  ag-grid-react: 29.3.4_ywgifyuujd6qfqjo3vyem7pv7q
   dexie: 3.2.2
   dexie-react-hooks: 1.1.1_3imspw4mgx25623dxsqc7dbkja
   plasmo: 0.62.1_gjpyg5imi5mt2gbvkmn3a4dr7m
   react: 18.2.0
-  react-data-grid: 7.0.0-beta.22_biqbaboplfbrettd7655fr4n2y
   react-dom: 18.2.0_react@18.2.0
   react-split: 2.0.14_react@18.2.0
   remixicon: 2.5.0
@@ -2417,6 +2419,23 @@ packages:
     hasBin: true
     dev: false
 
+  /ag-grid-community/29.3.4:
+    resolution: {integrity: sha512-HQ/meI/4jBXitkpB7GIgmyQMEDm2MPLinZCGqGWnybZ5lnn77RIvBzNdcGlwqRxMjrbpIjRaQOcvWvki1KK4BA==}
+    dev: false
+
+  /ag-grid-react/29.3.4_ywgifyuujd6qfqjo3vyem7pv7q:
+    resolution: {integrity: sha512-dZvVPq7myLOUnXILvWNPNI8tf9Oje5EowRnUEFJodVVWXhxvYwnNqYAj0py1AC66Ok16cpH7MVodtNkBkHzM7g==}
+    peerDependencies:
+      ag-grid-community: ~29.3.4
+      react: ^16.3.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.3.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      ag-grid-community: 29.3.4
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /ansi-escapes/6.0.0:
     resolution: {integrity: sha512-IG23inYII3dWlU2EyiAiGj6Bwal5GzsgPMwjYGvc1HPE2dgbj4ZB5ToWBKSquKw74nB3TIuOwaI6/jSULzfgrw==}
     engines: {node: '>=14.16'}
@@ -2761,11 +2780,6 @@ packages:
   /clone/2.1.2:
     resolution: {integrity: sha512-3Pe/CF1Nn94hyhIYpjtiLhdCoEoz0DqQ+988E9gmeEdQZlojxnOb74wctFyuwWQHzqyf9X7C7MG8juUpqBJT8w==}
     engines: {node: '>=0.8'}
-    dev: false
-
-  /clsx/1.2.1:
-    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
-    engines: {node: '>=6'}
     dev: false
 
   /codemirror-lang-sparql/0.4.0:
@@ -4828,17 +4842,6 @@ packages:
     resolution: {integrity: sha512-0HoLx7lbBlNd2YTmNKin0txgiYmAV56eVU823at8cG2+iD0Ia5kcRNDpzZy6I/HCtFTymHvTfdhHTzm3ak3Jpw==}
     dependencies:
       '@rdfjs/types': 1.1.0
-    dev: false
-
-  /react-data-grid/7.0.0-beta.22_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-uEzT0u8lnSmqh4Cxogy3Z/0L/z5aI4oDLWKyeyc1SVNIEw46KXWTOGin+SRuQg+hJOXY6UnzNreYMWHIF6z8hQ==}
-    peerDependencies:
-      react: ^18.0
-      react-dom: ^18.0
-    dependencies:
-      clsx: 1.2.1
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-dom/18.2.0_react@18.2.0:

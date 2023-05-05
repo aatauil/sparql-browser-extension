@@ -1,10 +1,10 @@
 import React from 'react'
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from '~data/db';
-import 'react-data-grid/lib/styles.css';
-import DataGrid from 'react-data-grid';
+import { AgGridReact } from 'ag-grid-react';
 import Spinner from './ui/Spinner';
 import { parseForGrid } from '~utils/parse-for-grid';
+
 
 function Output() {
   const file = useLiveQuery(() => db.files.where({ focused: 1 }).first());
@@ -20,7 +20,7 @@ function Output() {
   if(!file) return <EmptyStateOutput />
 
   return (
-    <div className='h-full border-t border-zinc-200 bg-zinc-100'> 
+    <div className='h-full border-t border-zinc-200 bg-zinc-100 mb-6'> 
       <OutputToolbar file={file} />
       <OutputZone file={file} />
     </div>
@@ -69,13 +69,12 @@ function OutputZone({ file }) {
   const {columns, rows} = parseForGrid(file.output)
 
   return (
-    <div className='flex flex-col h-full'>
-      <DataGrid 
-        className='flex-1 text-xs bg-zinc-100 pb-12'
-        columns={columns} 
-        rows={rows} 
-        resizable={true}
-      />
+    <div className='flex flex-col h-full ag-theme-balham'>
+      <AgGridReact
+        rowData={rows}
+        columnDefs={columns}
+        enableCellTextSelection={true}>
+      </AgGridReact>
     </div>
   )
 }

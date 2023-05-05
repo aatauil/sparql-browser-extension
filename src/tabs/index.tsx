@@ -1,4 +1,6 @@
 import "~style.css"
+import 'ag-grid-community/styles/ag-grid.css'; 
+import 'ag-grid-community/styles/ag-theme-balham.css';
 
 import Directory from '~components/Directory'
 import Editor from '~components/Editor'

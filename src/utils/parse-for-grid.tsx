@@ -14,17 +14,18 @@ export function parseForGrid(data) {
   const results = data.results.bindings
 
   obj.columns.push({
-    key: "ID",
-    name: "ID",
+    field: "ID",
     resizable: true,
-    frozen: true
+    sortable: true,
+    pinned: 'left',
+    width: '50px'
   })
 
   variables.forEach(element => {
     obj.columns.push({
-      key: element,
-      name: element,
+      field: element,
       resizable: true,
+      sortable: true,
     })
   });
 
