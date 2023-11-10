@@ -1,13 +1,13 @@
-import { prefixes } from '~data/prefixes';
+import { prefixes } from "~data/prefixes"
 
 export function parseForGrid(data) {
   const obj = {
     columns: [],
-    rows : []
-  };
+    rows: []
+  }
 
   if (!data) {
-    return obj;
+    return obj
   }
 
   const variables = data.head.vars
@@ -17,37 +17,37 @@ export function parseForGrid(data) {
     field: "ID",
     resizable: true,
     sortable: true,
-    pinned: 'left',
-    width: '50px'
+    pinned: "left",
+    width: "50px"
   })
 
-  variables.forEach(element => {
+  variables.forEach((element) => {
     obj.columns.push({
       field: element,
       resizable: true,
-      sortable: true,
+      sortable: true
     })
-  });
+  })
 
   obj.rows = results.map((row, index) => {
     const newRow = {
       ID: index + 1
-    };
+    }
     variables.forEach((key) => {
-      if(results.length > 200) {
+      if (results.length > 200) {
         newRow[key] = row[key]?.value
-        return;
+        return
       }
 
-      let shortened;
+      let shortened
 
-      if(row[key]?.type == 'uri') {
+      if (row[key]?.type == "uri") {
         const value = row[key].value
 
         for (const [long, short] of Object.entries(prefixes)) {
-          if ( value.indexOf(long) != -1 ) {
+          if (value.indexOf(long) != -1) {
             shortened = value.replace(long, `${short}:`)
-            break;
+            break
           }
         }
       }
@@ -58,5 +58,5 @@ export function parseForGrid(data) {
     return newRow
   })
 
-  return obj;
-};
+  return obj
+}

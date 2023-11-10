@@ -1,13 +1,12 @@
-import React from 'react'
-import { useLiveQuery } from "dexie-react-hooks";
-import { db } from '~data/db';
-import { AgGridReact } from 'ag-grid-react';
-import Spinner from './ui/Spinner';
-import { parseForGrid } from '~utils/parse-for-grid';
-
+import React from "react"
+import { useLiveQuery } from "dexie-react-hooks"
+import { db } from "~data/db"
+import { AgGridReact } from "ag-grid-react"
+import Spinner from "./ui/Spinner"
+import { parseForGrid } from "~utils/parse-for-grid"
 
 function Output() {
-  const file = useLiveQuery(() => db.files.where({ focused: 1 }).first());
+  const file = useLiveQuery(() => db.files.where({ focused: 1 }).first())
 
   function clearOutput() {
     db.files.update(file, {
@@ -17,10 +16,10 @@ function Output() {
     })
   }
 
-  if(!file) return <EmptyStateOutput />
+  if (!file) return <EmptyStateOutput />
 
   return (
-    <div className='h-full border-t border-zinc-200 bg-zinc-100 mb-6'> 
+    <div className="mb-6 h-full border-t border-zinc-200 bg-zinc-100">
       <OutputToolbar file={file} />
       <OutputZone file={file} />
     </div>
@@ -28,74 +27,73 @@ function Output() {
 }
 
 function OutputToolbar({ file }) {
-
   const statusColor = () => {
     if (file?.status == 200) return "bg-green-700"
-    return "bg-red-700" 
+    return "bg-red-700"
   }
 
   return (
-    <div className='flex items-center space-x-2 border-b p-2 border-zinc-300'>
-      {file.isLoading ?
+    <div className="flex items-center space-x-2 border-b border-zinc-300 p-2">
+      {file.isLoading ? (
         <Spinner />
-        :
-        <div className={`text-xs px-2 py-1 rounded text-white font-medium ${statusColor()}`}>
+      ) : (
+        <div
+          className={`rounded px-2 py-1 text-xs font-medium text-white ${statusColor()}`}>
           {file?.status} {file?.statusMessage}
         </div>
-      }
-      <div className='font-medium text-zinc-700'>Results</div>
+      )}
+      <div className="font-medium text-zinc-700">Results</div>
 
-      {file.duration &&
-        <div className='font-medium text-zinc-700 bg-zinc-200 px-2 py-1 rounded'>
+      {file.duration && (
+        <div className="rounded bg-zinc-200 px-2 py-1 font-medium text-zinc-700">
           {file.duration}
         </div>
-      }
+      )}
     </div>
   )
 }
 
 function OutputZone({ file }) {
+  if (file.isLoading) return null
 
-  if(file.isLoading) return null
-
-  if(file.errorMessage) {
+  if (file.errorMessage) {
     return (
-      <div className='h-full p-2'>
-        <div className='p-4 mt-2 bg-zinc-200 font-medium text-zinc-800 rounded whitespace-pre-line'>{file.errorMessage}</div>
+      <div className="h-full p-2">
+        <div className="mt-2 whitespace-pre-line rounded bg-zinc-200 p-4 font-medium text-zinc-800">
+          {file.errorMessage}
+        </div>
       </div>
     )
-  } 
+  }
 
-  const {columns, rows} = parseForGrid(file.output)
+  const { columns, rows } = parseForGrid(file.output)
 
   return (
-    <div className='flex flex-col h-full ag-theme-balham'>
+    <div className="ag-theme-balham flex h-full flex-col">
       <AgGridReact
         rowData={rows}
         columnDefs={columns}
-        enableCellTextSelection={true}>
-      </AgGridReact>
+        enableCellTextSelection={true}></AgGridReact>
     </div>
   )
 }
 
 function EmptyStateOutput() {
   return (
-    <div className='h-full border-t border-zinc-200 bg-zinc-100'> 
-      <div className='p-2 h-full'>
-        <div className='flex items-center space-x-2'>
-        <div className='flex items-center space-x-1 text-xs px-2 py-1 rounded bg-zinc-200 text-zinc-200 font-medium'>
-          status
-        </div>
-          <div className='font-medium text-zinc-700'>Results</div>
+    <div className="h-full border-t border-zinc-200 bg-zinc-100">
+      <div className="h-full p-2">
+        <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-1 rounded bg-zinc-200 px-2 py-1 text-xs font-medium text-zinc-200">
+            status
+          </div>
+          <div className="font-medium text-zinc-700">Results</div>
         </div>
 
-        <div className='flex items-center justify-center h-full text-center'>
-          <div className='text-zinc-500'>
+        <div className="flex h-full items-center justify-center text-center">
+          <div className="text-zinc-500">
             <i className="ri-rainbow-line text-4xl"></i>
             <div>The results of your query will appear here.</div>
           </div>
-
         </div>
       </div>
     </div>
