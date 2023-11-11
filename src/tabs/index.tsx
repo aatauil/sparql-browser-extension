@@ -14,11 +14,6 @@ function index() {
     <div>
       <div className="max-w-screen h-screen max-h-screen w-screen overflow-hidden bg-white">
         <div className="flex h-full w-full">
-          <div className="flex h-full flex-col border-r border-slate-400">
-            <div className="flex h-10 w-10 items-center justify-center border-b border-slate-400">
-              <i className="ri-bubble-chart-line text-lg text-blue-600"></i>
-            </div>
-          </div>
           <SideBar />
           <div className="relative flex h-full flex-1 flex-col overflow-hidden">
             <Split

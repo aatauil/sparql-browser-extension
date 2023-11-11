@@ -8,14 +8,6 @@ import { parseForGrid } from "~utils/parse-for-grid"
 function Output() {
   const file = useLiveQuery(() => db.files.where({ focused: 1 }).first())
 
-  function clearOutput() {
-    db.files.update(file, {
-      output: null,
-      error: null,
-      duration: null
-    })
-  }
-
   if (!file) return <EmptyStateOutput />
 
   return (
