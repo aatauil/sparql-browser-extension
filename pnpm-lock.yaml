@@ -36,8 +36,8 @@ dependencies:
     specifier: ^2.5.0
     version: 2.5.0
   sparql-editor:
-    specifier: 0.4.0
-    version: 0.4.0(@lezer/common@1.1.1)
+    specifier: 0.5.0
+    version: 0.5.0(@lezer/common@1.1.1)
   tailwindcss:
     specifier: 3.2.4
     version: 3.2.4(postcss@8.4.21)
@@ -3389,8 +3389,8 @@ packages:
       periscopic: 3.1.0
     dev: false
 
-  /codemirror-lang-sparql@0.4.0:
-    resolution: {integrity: sha512-ngb6JUfC//NpA2/W+7CHOoeh5tmXh1vLGPmXkuM4D5/Bn2+8f4vDfkpC7HppSqLB2JcZRrMnY2vvzmw9TbBa2w==}
+  /codemirror-lang-sparql@1.0.0:
+    resolution: {integrity: sha512-6iNGoNMo+/zx7bcFvd79jWFmU+UatsCtSqnhBJjNHVCBtfc+2NCaiiNR2g1fDLUIVjTtrEfrjQGoZuFdBd5RZw==}
     dependencies:
       '@codemirror/language': 6.9.2
       '@lezer/highlight': 1.1.6
@@ -6260,11 +6260,11 @@ packages:
       whatwg-url: 7.1.0
     dev: false
 
-  /sparql-editor@0.4.0(@lezer/common@1.1.1):
-    resolution: {integrity: sha512-OasAA4AoVbJ4FZSRmvtZQSF7W5oZoRHXn2ccCEVCFeSxZ8NTb079LstwqaxBv1z1D01N2cr49HyH+I6N/bi3fQ==}
+  /sparql-editor@0.5.0(@lezer/common@1.1.1):
+    resolution: {integrity: sha512-Jwx86S/FTK28XD485jvWQQ1nQiZWNzGXPq949FtzniNPSCn+WTx0ZEH5Tl7AT5cW+FPsHXuI0EfHcbV4GzM9bg==}
     dependencies:
       codemirror: 6.0.1(@lezer/common@1.1.1)
-      codemirror-lang-sparql: 0.4.0
+      codemirror-lang-sparql: 1.0.0
       sparqljs: 3.7.1
     transitivePeerDependencies:
       - '@lezer/common'
