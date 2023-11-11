@@ -1,11 +1,6 @@
 
-<h1 align="center">
-  <br>
-  <img src="https://user-images.githubusercontent.com/52280338/215782497-e158c4b5-1906-44d8-a122-067cee1830ec.png" alt="Sparqlbrowserextension" width="50"></img>
-  <br>
-   Sparql Browser extension
-  <br>
-</h1>
+
+![screenshot](https://github.com/aatauil/sparql-browser-extension/assets/52280338/0ff096d9-f9e4-48cc-a6a4-e13f5a30e14e)
 
 <h4 align="center">Feature rich sparql editor as a browser extension</h4>
 
@@ -17,7 +12,6 @@
   <a href="#license">License</a>
 </p>
 
-![screenshot](https://user-images.githubusercontent.com/52280338/215781479-01d4c419-ca22-4fe8-81d7-4b83c3301d10.png)
 
 ## Key Features
 
