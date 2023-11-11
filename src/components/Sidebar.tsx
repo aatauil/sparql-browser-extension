@@ -8,7 +8,7 @@ import SbFavorites from "./Sidebar/SbFavorites"
 
 function Sidebar() {
   return (
-    <div className="flex h-full w-60 flex-col border-r border-neutral-400 text-gray-600 shadow-inner">
+    <div className="flex h-full w-60 flex-col border-r border-zinc-500 bg-stone-100 text-gray-800">
       <SbDatabases />
       <SbFiles />
       <SbFavorites />
@@ -18,7 +18,7 @@ function Sidebar() {
           href="https://github.com/aatauil/sparql-browser-extension"
           target="_blank"
           rel="noopener noreferrer">
-          <i className="ri-github-fill text-2xl text-black hover:text-zinc-600"></i>
+          <i className="ri-github-fill text-2xl text-zinc-800 hover:text-zinc-600"></i>
         </a>
       </div>
     </div>

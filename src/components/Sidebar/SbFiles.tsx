@@ -65,15 +65,15 @@ function SbFiles() {
   
   return (
     <div className='border-t border-neutral-400'>
-      <div className='flex items-center justify-between pl-4 pr-3 py-2 bg-neutral-100'>
-        <h2 className='text-xs font-medium text-zinc-700 uppercase'>Queries</h2> 
-        <button className='bg-neutral-200 px-1 py-.5 text-zinc-600 text-md rounded hover:bg-zinc-300 hover:text-zinc-900'onClick={() => setIsCreating(true)}>
+      <div className='flex items-center justify-between pl-4 pr-3 py-2 bg-zinc-200'>
+        <h2 className='text-xs font-medium text-zinc-900 uppercase'>Queries</h2> 
+        <button className='px-1 py-.5 text-black text-md rounded hover:bg-zinc-300'onClick={() => setIsCreating(true)}>
           <i className="ri-add-line text-sm"></i>
         </button>
       </div>
       <div className='p-2 space-y-px'>
         {isCreating &&
-          <div ref={fileInput} className={`flex items-center space-x-1 cursor-pointer text-xs p-1 rounded`} >
+          <div ref={fileInput} className="flex items-center space-x-1 cursor-pointer text-xs p-1 rounded border border-zinc-500 bg-white" >
             <i className="ri-file-list-2-line text-base"></i>
             <input autoFocus type="text" value={fileName} onChange={(e) => setFileName(e.target.value)} onKeyDown={handleKeyDown} className='w-full p-1 pl-0 rounded border-none focus:ring-0 text-xs' placeholder='Untitled query'/>
           </div> 
@@ -140,15 +140,15 @@ function FileListItem({file}) {
   return (
     <>
       {isEditing ?
-       <div ref={fileInput} onClick={() => setFile(file.id)} onDoubleClick={() => setIsEditing(true)} className={`flex items-center space-x-1 cursor-pointer text-xs p-1 rounded ${file.focused && "bg-zinc-100 font-medium text-zinc-800"}`} >
+       <div ref={fileInput} onClick={() => setFile(file.id)} onDoubleClick={() => setIsEditing(true)} className={`flex items-center space-x-1 cursor-pointer border border-transparent text-xs p-1 rounded  ${file.focused && "bg-white text-black  border border-zinc-600 ring-offset-2 hover:border-black ring-2 ring-blue-600"}`} >
           <i className={`ri-file-list-2-line text-base ${file.focused && "text-blue-700"}`}></i>
           <input autoFocus type="text" value={fileName} onChange={(e) => setFileName(e.target.value)} onKeyDown={handleKeyDown} className='w-full p-1 pl-0 rounded border-none focus:ring-0 text-xs' placeholder='Untitled query'/>
         </div> 
         :
-        <div onClick={() => setFile(file.id)} onDoubleClick={() => setIsEditing(true)} className={`flex items-center space-x-1 cursor-pointer text-xs p-1 rounded hover:bg-zinc-100 hover:text-zinc-800 ${file.focused && "bg-zinc-100 font-medium text-zinc-800"}`} >
+        <div onClick={() => setFile(file.id)} onDoubleClick={() => setIsEditing(true)} className={`flex items-center space-x-1 cursor-pointer text-xs border border-transparent p-1 rounded  hover:text-zinc-800 ${file.focused && "bg-white text-black hover:border-black  border-zinc-600"}`} >
           <i className={`ri-file-list-2-line text-base ${file.focused && "text-blue-700"}`}></i>
           <div className='flex-1 text-ellipsis overflow-hidden whitespace-nowrap' >{file.name}</div>
-          <button className='hover:text-red-500 rounded-full text-gray-700 flex items-center justify-center h-5 w-5' onClick={() => deleteFile(file.id)}>
+          <button className='hover:text-red-600 hover:bg-red-100 rounded-full text-gray-700 flex items-center justify-center h-5 w-5' onClick={() => deleteFile(file.id)}>
             <i className="ri-close-line"></i>
           </button> 
         </div> 
