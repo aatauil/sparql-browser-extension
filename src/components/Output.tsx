@@ -67,7 +67,9 @@ function OutputZone({ file }) {
       <AgGridReact
         rowData={rows}
         columnDefs={columns}
-        enableCellTextSelection={true}></AgGridReact>
+        enableCellTextSelection={true}
+        onGridReady={(e) => e.columnApi.autoSizeAllColumns()}
+      ></AgGridReact>
     </div>
   )
 }
