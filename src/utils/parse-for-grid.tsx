@@ -20,10 +20,10 @@ export function parseForGrid(data) {
   }
 
   /** Case for ASK Queryies */
-  if('boolean' in data) {
+  if ("boolean" in data) {
     return {
-      columns: [{field: "ASK"}],
-      rows: [{ASK: data.boolean}]
+      columns: [{ field: "ASK" }],
+      rows: [{ ASK: data.boolean }]
     }
   }
 
