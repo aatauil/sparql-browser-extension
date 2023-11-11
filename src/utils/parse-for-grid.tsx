@@ -1,4 +1,14 @@
+import CustomCell from "~components/ui/CustomCell"
 import { prefixes } from "~data/prefixes"
+
+function limitResultLength(result, limit) {
+  console.log(result.length)
+  if (result.length > limit) {
+    return result.slice(0, limit)
+  } else {
+    return result
+  }
+}
 
 export function parseForGrid(data) {
   const obj = {
@@ -11,21 +21,22 @@ export function parseForGrid(data) {
   }
 
   const variables = data.head.vars
-  const results = data.results.bindings
+  const results = limitResultLength(data.results.bindings, 500)
 
   obj.columns.push({
     field: "ID",
-    resizable: true,
+    resizable: false,
     sortable: true,
     pinned: "left",
-    width: "50px"
+    width: "60px"
   })
 
   variables.forEach((element) => {
     obj.columns.push({
       field: element,
       resizable: true,
-      sortable: true
+      sortable: true,
+      cellRenderer: CustomCell
     })
   })
 
@@ -33,12 +44,8 @@ export function parseForGrid(data) {
     const newRow = {
       ID: index + 1
     }
-    variables.forEach((key) => {
-      if (results.length > 200) {
-        newRow[key] = row[key]?.value
-        return
-      }
 
+    for (let key in row) {
       let shortened
 
       if (row[key]?.type == "uri") {
@@ -52,8 +59,11 @@ export function parseForGrid(data) {
         }
       }
 
-      newRow[key] = shortened || row[key]?.value
-    })
+      newRow[key] = {
+        uri: row[key]?.value,
+        shortened: shortened
+      }
+    }
 
     return newRow
   })
