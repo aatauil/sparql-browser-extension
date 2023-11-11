@@ -11,17 +11,26 @@ function limitResultLength(result, limit) {
 }
 
 export function parseForGrid(data) {
+  /** Case for empty results */
+  if (!data) {
+    return {
+      columns: [],
+      rows: []
+    }
+  }
+
+  /** Case for ASK Queryies */
+  if('boolean' in data) {
+    return {
+      columns: [{field: "ASK"}],
+      rows: [{ASK: data.boolean}]
+    }
+  }
+
   const obj = {
     columns: [],
     rows: []
   }
-
-  if (!data) {
-    return obj
-  }
-
-  const variables = data.head.vars
-  const results = limitResultLength(data.results.bindings, 500)
 
   obj.columns.push({
     field: "ID",
@@ -30,6 +39,9 @@ export function parseForGrid(data) {
     pinned: "left",
     width: "60px"
   })
+
+  const variables = data.head.vars
+  const results = limitResultLength(data.results?.bindings, 500)
 
   variables.forEach((element) => {
     obj.columns.push({
