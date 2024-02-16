@@ -43,7 +43,7 @@ function Editor() {
   if (!file)
     return (
       <div className="flex h-full items-center justify-center">
-        <div className="text-center text-zinc-500">
+        <div className="text-center text-gray-500">
           <i className="ri-braces-line text-4xl"></i>
           <div>Open a file to start writing your query</div>
         </div>

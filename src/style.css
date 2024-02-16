@@ -21,7 +21,7 @@
 }
 
 .cm-gutterElement {
-  @apply text-sm text-zinc-800
+  @apply text-sm text-gray-800
 }
 
 .cm-focused {
@@ -33,18 +33,18 @@
 }
 
 .rdg-row-even {
-  @apply bg-zinc-50
+  @apply bg-gray-50
 }
 
 .rdg-cell-resizable::after {
-  @apply bg-zinc-100
+  @apply bg-gray-100
 }
 
 .gutter {
   border-top-width: 1px;
-  border-color: #a3a3a3;
+  border-color: #d1d5db;
   position: relative;
-  background-color: #d8d8d8;
+  background-color: #e2e2e2;
   background-repeat: no-repeat;
   background-position: 50%;
   transition: background-color 0.5s

@@ -35,7 +35,7 @@ function File({ data }) {
   if (editMode)
     return (
       <div>
-        <div className="hover:black flex w-full cursor-pointer items-center justify-between space-x-1 rounded p-2 text-gray-800 hover:bg-zinc-200">
+        <div className="hover:black flex w-full cursor-pointer items-center justify-between space-x-1 rounded p-2 text-gray-800 hover:bg-gray-300">
           <div className="flex flex-1 items-center space-x-2">
             <i className="ri-file-2-line text-blue-500"></i>
             <input
@@ -61,7 +61,7 @@ function File({ data }) {
 
   return (
     <div ref={hoverRef}>
-      <button className="hover:black flex w-full cursor-pointer items-center justify-between space-x-1 rounded p-2 text-gray-800 hover:bg-zinc-200">
+      <button className="hover:black flex w-full cursor-pointer items-center justify-between space-x-1 rounded p-2 text-gray-800 hover:bg-gray-300">
         <div
           className="flex flex-1 items-center space-x-2"
           onClick={() => setSelected(data.id)}>

@@ -56,19 +56,21 @@ function SbDatabases() {
     }
   };
 
+  const isEmptyAndNotCreating = () => databases?.length == 0 && isCreatingDb == false;
+
   return (
     <div className='pb-4 relative'>
-      <div className='flex items-center justify-between space-x-1 pl-2 pr-3 py-2 bg-zinc-200'>
-        <i className="ri-database-2-line text-base"></i>
-        <h2 className='text-xs font-medium text-zinc-900 uppercase flex-1'>Databases</h2> 
-        <button className='px-1 py-.5 text-black text-md rounded hover:bg-zinc-300' onClick={() => setIsCreatingDb(true)}>
+      <div className='flex items-center justify-between space-x-1 pl-3 pr-3 py-2 bg-gray-200/50'>
+        <i className="ri-instance-line text-base leading-3 text-gray-500"></i>
+        <h2 className='text-xs font-medium text-gray-900 uppercase flex-1'>Collections</h2> 
+        <button className='px-1 py-.5 text-black text-md rounded hover:bg-gray-300' onClick={() => setIsCreatingDb(true)}>
           <i className="ri-add-line text-sm"></i>
         </button>
       </div>
 
       <div className='p-2 space-y-px'>
         {isCreatingDb ?
-          <div ref={dbInput} className='flex items-center space-x-1 cursor-pointer text-xs p-1 rounded border border-zinc-500 bg-white'>
+          <div ref={dbInput} className='flex items-center space-x-1 cursor-pointer text-xs p-1 rounded border border-gray-300 bg-white'>
             <i className="ri-layout-2-line text-base"></i>
             <input autoFocus type="text" value={dbName} onChange={(e) => setDbName(e.target.value)} onKeyDown={handleKeyDown} className='w-full p-1 pl-0 rounded border-none focus:ring-0 text-xs' placeholder='Database name'/>
           </div>
@@ -77,7 +79,7 @@ function SbDatabases() {
         }
 
         {databases?.map((db, index) => (
-          <div key={index} onClick={() => setDatabase(db)} className={`flex items-center space-x-1 cursor-pointer border border-transparent text-xs p-1 rounded  ${db.focused && "bg-white text-black  border border-zinc-600 ring-offset-2 hover:border-black"}`} >
+          <div key={index} onClick={() => setDatabase(db)} className={`flex items-center space-x-1 cursor-pointer border border-transparent text-xs p-1 rounded hover:bg-gray-200  ${db.focused && "bg-white text-black  hover:bg-white border border-gray-600 ring-offset-2 hover:border-black"}`} >
             <i className={`ri-layout-2-line text-base ${db.focused && "text-blue-700"}`}></i>
             <div className='flex-1 text-ellipsis overflow-hidden whitespace-nowrap'>{db.name}</div>
             <button className='hover:text-red-500 hover:bg-red-100 rounded-full text-gray-700 flex items-center justify-center h-5 w-5 '>
@@ -85,6 +87,11 @@ function SbDatabases() {
             </button> 
           </div> 
         ))}
+
+        {isEmptyAndNotCreating() && 
+          <div className='text-[10px] text-center text-gray-400 rounded px-1 py-2 '>
+            You can start writing queries as soon as you create a collection
+          </div>}
       </div>
 
       { selectedDb && 

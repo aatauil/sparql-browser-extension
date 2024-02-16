@@ -85,7 +85,7 @@ function Toolbar() {
     if (file.favorite == 1) {
       return "ri-star-fill text-yellow-400"
     } else {
-      return "ri-star-line text-zinc-400"
+      return "ri-star-line text-gray-400"
     }
   }
 
@@ -106,7 +106,7 @@ function Toolbar() {
     <div className="flex w-full items-center justify-between p-4">
       <div className="flex-1 space-y-2">
         <div className="flex items-center space-x-2">
-          <button className="bg-zinc-100 px-2 py-1 rounded hover:bg-yellow-100" onClick={() => toggleFavorite()}>
+          <button className="bg-gray-100 px-2 py-1 rounded hover:bg-yellow-100" onClick={() => toggleFavorite()}>
             <i className={`text-xl ${isFavorite()}`}></i>
           </button>
           <span className="text-xl font-medium">{file.name}</span>
@@ -127,11 +127,11 @@ function Toolbar() {
               />
               <button
                 onClick={() => setEditingEndpoint(true)}
-                className="flex h-full items-center rounded border border-zinc-400 bg-zinc-200 px-2 py-2 hover:bg-zinc-300">
-                <i className="ri-list-settings-line text-base leading-none"></i>
+                className="flex h-full items-center rounded border border-gray-400 bg-gray-200 px-2 py-2 hover:bg-gray-300">
+                <i className="ri-database-2-line text-base leading-none text-gray-800"></i>
               </button>
             </div>
-            <div className="mx-8 w-.5 h-8 border border-zinc-200"></div>
+            <div className="mx-8 w-.5 h-8 border border-gray-200"></div>
             <button
               onClick={query}
               className="flex items-center space-x-2 rounded border border-green-900 bg-green-700 px-2 py-1.5 pr-6 text-sm text-white hover:bg-green-800">
@@ -188,13 +188,13 @@ function EndpointModal({ setEditingEndpoint, endpoints }) {
                 <button
                   type="button"
                   onClick={() => setEditingEndpoint(false)}
-                  className="flex h-full items-center rounded bg-zinc-200 px-3 py-2 hover:bg-zinc-300">
+                  className="flex h-full items-center rounded bg-gray-200 px-3 py-2 hover:bg-gray-300">
                   <i className="ri-close-line"></i>
                 </button>
               </div>
               <div className="pb-4">
                 <table className="min-w-full divide-y divide-gray-300 text-xs">
-                  <thead className="bg-zinc-100">
+                  <thead className="bg-gray-100">
                     <tr>
                       <th
                         scope="col"
@@ -212,20 +212,20 @@ function EndpointModal({ setEditingEndpoint, endpoints }) {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="text-zinc-700">
+                    <tr className="text-gray-700">
                       <td className="whitespace-nowrap px-4 py-2">dbpedia</td>
                       <td className="whitespace-nowrap px-4 py-2">
                         https://dbpedia.org/sparql
                       </td>
                       <td className="flex justify-end whitespace-nowrap px-4 py-2">
-                        <span className="rounded-full border text-[11px] border-zinc-300 bg-zinc-200 px-3 py-1">
+                        <span className="rounded-full border text-[11px] border-gray-300 bg-gray-200 px-3 py-1">
                           default
                         </span>
                       </td>
                     </tr>
                     {endpoints.map((endpoint, index) => {
                       return (
-                        <tr key={index} className="text-zinc-700">
+                        <tr key={index} className="text-gray-700">
                           <td className="whitespace-nowrap px-4 py-2">
                             {endpoint.label}
                           </td>
@@ -234,7 +234,7 @@ function EndpointModal({ setEditingEndpoint, endpoints }) {
                           </td>
                           <td className="flex justify-end whitespace-nowrap px-3 py-2">
                             <button onClick={() => deleteEndpoint(endpoint.id)}>
-                              <i className="ri-delete-bin-2-line text-right text-lg leading-none text-zinc-700 hover:text-red-700"></i>
+                              <i className="ri-delete-bin-2-line text-right text-lg leading-none text-gray-700 hover:text-red-700"></i>
                             </button>
                           </td>
                         </tr>
@@ -243,7 +243,7 @@ function EndpointModal({ setEditingEndpoint, endpoints }) {
                   </tbody>
                 </table>
               </div>
-              <div className="border-t border-gray-300 bg-zinc-50 p-4">
+              <div className="border-t border-gray-300 bg-gray-50 p-4">
                 <div className="flex items-center space-x-2">
                   <div className="relative w-1/5">
                     <input
@@ -256,7 +256,7 @@ function EndpointModal({ setEditingEndpoint, endpoints }) {
                     />
                     <label
                       for="small_outlined"
-                      className="absolute top-1 left-1 z-10 origin-[0] -translate-y-3 scale-75 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-1 peer-focus:-translate-y-3 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600">
+                      className="absolute top-1 left-1 z-10 origin-[0] -trangray-y-3 scale-75 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-trangray-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-1 peer-focus:-trangray-y-3 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600">
                       Label
                     </label>
                   </div>
@@ -271,7 +271,7 @@ function EndpointModal({ setEditingEndpoint, endpoints }) {
                     />
                     <label
                       for="small_outlined"
-                      className="absolute top-1 left-1 z-10 origin-[0] -translate-y-3 scale-75 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-1 peer-focus:-translate-y-3 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600">
+                      className="absolute top-1 left-1 z-10 origin-[0] -trangray-y-3 scale-75 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-trangray-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-1 peer-focus:-trangray-y-3 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600">
                       Value
                     </label>
                   </div>
