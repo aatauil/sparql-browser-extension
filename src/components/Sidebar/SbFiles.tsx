@@ -65,8 +65,9 @@ function SbFiles() {
   
   return (
     <div className='border-t border-neutral-400'>
-      <div className='flex items-center justify-between pl-4 pr-3 py-2 bg-zinc-200'>
-        <h2 className='text-xs font-medium text-zinc-900 uppercase'>Queries</h2> 
+      <div className='flex items-center justify-between space-x-1 pl-2 pr-3 py-2 bg-zinc-200'>
+        <i className="ri-bubble-chart-line text-base"></i>
+        <h2 className='text-xs font-medium text-zinc-900 uppercase flex-1'>Queries</h2> 
         <button className='px-1 py-.5 text-black text-md rounded hover:bg-zinc-300'onClick={() => setIsCreating(true)}>
           <i className="ri-add-line text-sm"></i>
         </button>

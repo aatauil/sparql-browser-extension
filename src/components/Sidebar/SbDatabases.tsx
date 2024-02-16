@@ -58,8 +58,9 @@ function SbDatabases() {
 
   return (
     <div className='pb-4 relative'>
-      <div className='flex items-center justify-between pl-4 pr-3 py-2 bg-zinc-200'>
-        <h2 className='text-xs font-medium text-zinc-900 uppercase'>Databases</h2> 
+      <div className='flex items-center justify-between space-x-1 pl-2 pr-3 py-2 bg-zinc-200'>
+        <i className="ri-database-2-line text-base"></i>
+        <h2 className='text-xs font-medium text-zinc-900 uppercase flex-1'>Databases</h2> 
         <button className='px-1 py-.5 text-black text-md rounded hover:bg-zinc-300' onClick={() => setIsCreatingDb(true)}>
           <i className="ri-add-line text-sm"></i>
         </button>

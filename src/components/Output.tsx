@@ -22,8 +22,8 @@ function Output() {
 
 function OutputToolbar({ file }) {
   const statusColor = () => {
-    if (file?.status == 200) return "bg-green-700"
-    return "bg-red-700"
+    if (file?.status == 200) return "bg-green-700 text-white font-medium border-green-900"
+    return "bg-red-700 border-red-900"
   }
 
   return (
@@ -32,14 +32,13 @@ function OutputToolbar({ file }) {
         <Spinner />
       ) : (
         <div
-          className={`rounded px-2 py-1 text-xs font-medium text-white ${statusColor()}`}>
+          className={`rounded px-2 py-1 text-[11px] border border-zinc-400 font-medium text-white ${statusColor()}`}>
           {file?.status} {file?.statusMessage}
         </div>
       )}
-      <div className="font-medium text-zinc-700">Results</div>
 
       {file.duration && (
-        <div className="rounded bg-zinc-200 px-2 py-1 font-medium text-zinc-700">
+        <div className="rounded bg-white border border-zinc-400 text-[11px] px-2 py-1 font-medium text-zinc-700">
           {file.duration}
         </div>
       )}
