@@ -103,59 +103,44 @@ function Toolbar() {
   if (!file) return null
 
   return (
-    <div className="flex w-full items-center justify-between border-b border-neutral-400 p-4">
+    <div className="flex w-full items-center justify-between p-4">
       <div className="flex-1 space-y-2">
         <div className="flex items-center space-x-2">
-          <button onClick={() => toggleFavorite()}>
+          <button className="bg-zinc-100 px-2 py-1 rounded hover:bg-yellow-100" onClick={() => toggleFavorite()}>
             <i className={`text-xl ${isFavorite()}`}></i>
           </button>
           <span className="text-xl font-medium">{file.name}</span>
         </div>
-        <div className="flex items-center space-x-4">
-          {database && (
-            <div className="flex items-center space-x-1 rounded border bg-zinc-100 px-2 font-medium text-zinc-800">
-              <i className="ri-layout-2-line text-base text-blue-600"></i>
-              <span>{database?.name}</span>
-            </div>
-          )}
-          <div className="flex items-center space-x-1 text-zinc-600">
-            <i className="ri-time-line text-base"></i>
-            <span className="text-xs font-medium">
-              {file.created.toLocaleString("en-GB")}
-            </span>
-          </div>
-          <div className="flex items-center space-x-1 text-zinc-600">
-            <i className="ri-file-edit-line text-base"></i>
-            <span className="text-xs font-medium">
-              {file.modified.toLocaleString("en-GB")}
-            </span>
-          </div>
-        </div>
       </div>
       <div className="space-y-1">
         <div className="flex items-center justify-end space-x-2">
-          <button
-            onClick={query}
-            className="flex items-center space-x-2 rounded border-2 border-green-700 bg-green-600 px-2 py-1.5 pr-6 text-sm text-white hover:bg-green-700">
-            <i className="ri-play-line text-lg leading-none"></i>
-            <div className="font-medium">Run</div>
-          </button>
+
+          <div className="flex h-auto items-center space-x-4">
+            <div className="flex items-center space-x-2">
+              <Select
+                className="w-60"
+                name="endpoint"
+                options={endpoints}
+                placeholder="Select endpoint..."
+                value={selectedEndpoint}
+                onChange={setEndpoint}
+              />
+              <button
+                onClick={() => setEditingEndpoint(true)}
+                className="flex h-full items-center rounded border border-zinc-400 bg-zinc-200 px-2 py-2 hover:bg-zinc-300">
+                <i className="ri-list-settings-line text-base leading-none"></i>
+              </button>
+            </div>
+            <div className="mx-8 w-.5 h-8 border border-zinc-200"></div>
+            <button
+              onClick={query}
+              className="flex items-center space-x-2 rounded border border-green-900 bg-green-700 px-2 py-1.5 pr-6 text-sm text-white hover:bg-green-800">
+              <i className="ri-play-line text-lg leading-none"></i>
+              <div className="font-medium">Run</div>
+            </button>
+          </div>
         </div>
-        <div className="flex h-auto items-center space-x-2">
-          <Select
-            className="w-60"
-            name="endpoint"
-            options={endpoints}
-            placeholder="Select endpoint..."
-            value={selectedEndpoint}
-            onChange={setEndpoint}
-          />
-          <button
-            onClick={() => setEditingEndpoint(true)}
-            className="flex h-full items-center rounded border-2 border-zinc-200 bg-zinc-200 px-2 py-2 hover:bg-zinc-300">
-            <i className="ri-list-settings-line text-base leading-none"></i>
-          </button>
-        </div>
+
       </div>
       {editingEndpoint && (
         <EndpointModal
@@ -190,11 +175,10 @@ function EndpointModal({ setEditingEndpoint, endpoints }) {
       <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
       <div
-        className="fixed inset-0 overflow-y-auto"
-        onClick={() => setEditingEndpoint(false)}>
+        className="fixed inset-0 overflow-y-auto">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl">
-            <div className="bg-white" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-white">
               <div className="flex items-center space-x-3 border-b border-gray-300 p-4">
                 <h3
                   className="font-base flex-1 text-lg leading-6 text-gray-900"
@@ -204,7 +188,7 @@ function EndpointModal({ setEditingEndpoint, endpoints }) {
                 <button
                   type="button"
                   onClick={() => setEditingEndpoint(false)}
-                  className="rounded-md bg-zinc-100 px-3 py-1 text-base font-medium text-gray-700  hover:bg-gray-200">
+                  className="flex h-full items-center rounded bg-zinc-200 px-3 py-2 hover:bg-zinc-300">
                   <i className="ri-close-line"></i>
                 </button>
               </div>
@@ -234,7 +218,7 @@ function EndpointModal({ setEditingEndpoint, endpoints }) {
                         https://dbpedia.org/sparql
                       </td>
                       <td className="flex justify-end whitespace-nowrap px-4 py-2">
-                        <span className="rounded bg-zinc-200 px-3 py-1">
+                        <span className="rounded-full border text-[11px] border-zinc-300 bg-zinc-200 px-3 py-1">
                           default
                         </span>
                       </td>
