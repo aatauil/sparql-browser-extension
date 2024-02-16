@@ -33,8 +33,8 @@ dependencies:
     specifier: ^2.0.14
     version: 2.0.14(react@18.2.0)
   remixicon:
-    specifier: ^2.5.0
-    version: 2.5.0
+    specifier: ^4.1.0
+    version: 4.1.0
   sparql-editor:
     specifier: 0.5.0
     version: 0.5.0(@lezer/common@1.1.1)
@@ -5999,8 +5999,8 @@ packages:
       rc: 1.2.8
     dev: false
 
-  /remixicon@2.5.0:
-    resolution: {integrity: sha512-q54ra2QutYDZpuSnFjmeagmEiN9IMo56/zz5dDNitzKD23oFRw77cWo4TsrAdmdkPiEn8mxlrTqxnkujDbEGww==}
+  /remixicon@4.1.0:
+    resolution: {integrity: sha512-N5dmpN6bjB7GyHi8RqhKp8Fy1cfOch0m75KZQv4ZNFa2ffpXJY2FQ4TdgigZulTdwOoTwLKjBQ7GCC+bEw8LHg==}
     dev: false
 
   /resolve-alpn@1.2.1:
