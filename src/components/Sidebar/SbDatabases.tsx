@@ -72,7 +72,7 @@ function SbDatabases() {
         {isCreatingDb ?
           <div ref={dbInput} className='flex items-center space-x-1 cursor-pointer text-xs p-1 rounded border border-gray-300 bg-white'>
             <i className="ri-layout-2-line text-base"></i>
-            <input autoFocus type="text" value={dbName} onChange={(e) => setDbName(e.target.value)} onKeyDown={handleKeyDown} className='w-full p-1 pl-0 rounded border-none focus:ring-0 text-xs' placeholder='Database name'/>
+            <input autoFocus type="text" value={dbName} onChange={(e) => setDbName(e.target.value)} onKeyDown={handleKeyDown} className='w-full p-1 pl-0 rounded border-none focus:ring-0 text-xs' placeholder='Collection name'/>
           </div>
           : 
           ""
@@ -110,9 +110,9 @@ function SbDatabases() {
                       </svg>
                     </div>
                     <div className="mt-2 text-center sm:ml-4 sm:text-left">
-                      <h3 className="text-lg font-base leading-6 text-gray-900" id="modal-title">Delete Database <span className='font-medium'>{selectedDb.name}</span></h3>
+                      <h3 className="text-lg font-base leading-6 text-gray-900" id="modal-title">Delete Collection <span className='font-medium'>{selectedDb.name}</span></h3>
                       <div className="mt-4">
-                        <p className="text-sm text-gray-500">Deleting this database will also <strong>delete all queries</strong> inside of it. This action cannot be undone.</p>
+                        <p className="text-sm text-gray-500">Deleting this collection will also <strong>delete all queries</strong> inside of it. This action cannot be undone.</p>
                       </div>
                     </div>
                   </div>
