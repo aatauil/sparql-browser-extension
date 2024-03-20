@@ -24,7 +24,7 @@ function SbFavorites() {
         <i className="ri-star-line text-base leading-3 text-gray-500"></i>
         <h2 className='text-xs font-medium text-gray-900 uppercase flex-1'>Favorites</h2> 
       </div>
-      <div className='p-2 space-y-px'>
+      <div className='p-2 space-y-px h-[200px] overflow-auto'>
         {favorites?.map((file, index) => (
             <div key={index} className={`flex items-center space-x-1 cursor-pointer border border-transparent hover:bg-gray-200 text-xs p-1 rounded  ${file.focused && "bg-white text-black hover:bg-white  border border-yellow-700 ring-offset-2 hover:border-black"}`} >
               <i className={`ri-star-line text-base ${file.focused && "text-yellow-600"}`}></i>
