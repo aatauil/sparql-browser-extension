@@ -74,7 +74,7 @@ function SbFiles() {
           <i className="ri-add-line text-sm"></i>
         </button>
       </div>
-      <div className='p-2 space-y-px'>
+      <div className='p-2 space-y-px h-[450px] overflow-auto'>
         {isCreating &&
           <div ref={fileInput} className="flex items-center space-x-1 cursor-pointer text-xs p-1 rounded border border-gray-500 bg-white" >
             <i className="ri-file-list-2-line text-base"></i>

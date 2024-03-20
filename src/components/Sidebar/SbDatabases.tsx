@@ -68,7 +68,7 @@ function SbDatabases() {
         </button>
       </div>
 
-      <div className='p-2 space-y-px'>
+      <div className='p-2 space-y-px h-[150px] overflow-auto'>
         {isCreatingDb ?
           <div ref={dbInput} className='flex items-center space-x-1 cursor-pointer text-xs p-1 rounded border border-gray-300 bg-white'>
             <i className="ri-layout-2-line text-base"></i>
