@@ -1,84 +1,65 @@
-import CustomCell from "~components/ui/CustomCell"
-import { prefixes } from "~data/prefixes"
+import CustomCell from "~components/ui/CustomCell";
+import { prefixes } from "~data/prefixes";
 
+/**
+ * Limits the length of the result array to a specified limit.
+ * @param {Array} result - The result array to limit.
+ * @param {number} limit - The maximum length of the result array.
+ * @returns {Array} - The limited result array.
+ */
 function limitResultLength(result, limit) {
-  console.log(result.length)
-  if (result.length > limit) {
-    return result.slice(0, limit)
-  } else {
-    return result
-  }
+  return result.length > limit ? result.slice(0, limit) : result;
 }
 
+/**
+ * Parses the input data for grid representation.
+ * @param {Object} data - The input data to parse.
+ * @returns {Object} - An object containing columns and rows for the grid.
+ */
 export function parseForGrid(data) {
-  /** Case for empty results */
   if (!data) {
-    return {
-      columns: [],
-      rows: []
-    }
+    return { columns: [], rows: [] };
   }
 
-  /** Case for ASK Queryies */
   if ("boolean" in data) {
-    return {
-      columns: [{ field: "ASK" }],
-      rows: [{ ASK: data.boolean }]
-    }
+    return { columns: [{ field: "ASK" }], rows: [{ ASK: data.boolean }] };
   }
 
-  const obj = {
-    columns: [],
-    rows: []
-  }
-
-  obj.columns.push({
-    field: "ID",
-    resizable: false,
-    sortable: true,
-    pinned: "left",
-    width: "60px"
-  })
-
-  const variables = data.head.vars
-  const results = limitResultLength(data.results?.bindings, 500)
-
-  variables.forEach((element) => {
-    obj.columns.push({
-      field: element,
+  const columns = [
+    {
+      field: "ID",
+      resizable: false,
+      sortable: true,
+      pinned: "left",
+      width: "60px"
+    },
+    ...data.head.vars.map((variable) => ({
+      field: variable,
       resizable: true,
       sortable: true,
       cellRenderer: CustomCell
-    })
-  })
+    }))
+  ];
 
-  obj.rows = results.map((row, index) => {
-    const newRow = {
-      ID: index + 1
-    }
+  const results = limitResultLength(data.results?.bindings, 500);
+  const rows = results.map((row, index) => {
+    const newRow = { ID: index + 1 };
 
-    for (let key in row) {
-      let shortened
-
-      if (row[key]?.type == "uri") {
-        const value = row[key].value
-
+    Object.entries(row).forEach(([key, valueObj]) => {
+      const value = valueObj?.value;
+      let shortened;
+      if (valueObj?.type === "uri") {
         for (const [long, short] of Object.entries(prefixes)) {
-          if (value.indexOf(long) != -1) {
-            shortened = value.replace(long, `${short}:`)
-            break
+          if (value.includes(long)) {
+            shortened = value.replace(long, `${short}:`);
+            break; // Break early once a match is found
           }
         }
       }
+      newRow[key] = { uri: value, shortened };
+    });
 
-      newRow[key] = {
-        uri: row[key]?.value,
-        shortened: shortened
-      }
-    }
-
-    return newRow
-  })
-
-  return obj
+    return newRow;
+  });
+  return { columns, rows };
 }

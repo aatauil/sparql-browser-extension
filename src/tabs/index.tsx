@@ -1,13 +1,12 @@
-import "~style.css"
-import "ag-grid-community/styles/ag-grid.css"
-import "ag-grid-community/styles/ag-theme-balham.css"
+import "~style.css";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-balham.css";
 
-import Directory from "~components/Directory"
-import Editor from "~components/Editor"
-import Output from "~components/Output"
-import SideBar from "~components/Sidebar"
-import Toolbar from "~components/Toolbar"
-import Split from "react-split"
+import Editor from "~components/Editor";
+import Output from "~components/Output";
+import SideBar from "~components/Sidebar";
+import Toolbar from "~components/Toolbar";
+import Split from "react-split";
 
 function index() {
   return (
@@ -36,6 +35,6 @@ function index() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-export default index
+export default index;
