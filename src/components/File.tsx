@@ -1,35 +1,35 @@
-import React, { useState } from "react"
-import { db } from "~data/db"
-import { useHover } from "~hooks/useHover"
-import { useDrag } from "react-dnd"
+import React, { useState } from "react";
+import { db } from "~data/db";
+import { useHover } from "~hooks/useHover";
+import { useDrag } from "react-dnd";
 
 function File({ data }) {
-  const [hoverRef, isHovered] = useHover()
-  const [editMode, setEditMode] = useState(false)
-  const [localName, setlocalName] = useState(data.name)
+  const [hoverRef, isHovered] = useHover();
+  const [editMode, setEditMode] = useState(false);
+  const [localName, setlocalName] = useState(data.name);
 
   function setSelected(fileId) {
-    db.files.where("focused").equals(1).modify({ focused: 0 })
+    db.files.where("focused").equals(1).modify({ focused: 0 });
     db.files.update(fileId, {
       focused: 1
-    })
+    });
   }
 
   function handleDoubleClick() {
-    console.log("double")
+    console.log("double");
   }
 
   function deleteFile() {
-    db.files.delete(data.id)
+    db.files.delete(data.id);
   }
 
   function updateFileName() {
-    if (!localName) return
+    if (!localName) return;
 
     db.files.update(data.id, {
       name: localName
-    })
-    setEditMode(false)
+    });
+    setEditMode(false);
   }
 
   if (editMode)
@@ -57,7 +57,7 @@ function File({ data }) {
           </div>
         </div>
       </div>
-    )
+    );
 
   return (
     <div ref={hoverRef}>
@@ -80,7 +80,7 @@ function File({ data }) {
         ) : null}
       </button>
     </div>
-  )
+  );
 }
 
-export default File
+export default File;

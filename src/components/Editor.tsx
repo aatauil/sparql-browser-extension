@@ -1,46 +1,48 @@
-import React, { useEffect, useRef, useState } from "react"
-import { createSparqlEditor } from "sparql-editor"
-import { db } from "../data/db"
-import { useDebouncedCallback } from "use-debounce"
-import { useLiveQuery } from "dexie-react-hooks"
+import React, { useEffect, useRef, useState } from "react";
+import { createSparqlEditor } from "sparql-editor";
+import { db } from "../data/db";
+import { useDebouncedCallback } from "use-debounce";
+import { useLiveQuery } from "dexie-react-hooks";
 
 function Editor() {
-  const container = useRef()
-  const [view, setView] = useState()
+  const container = useRef(null);
+  const [view, setView] = useState(null);
 
-  const file = useLiveQuery(() => db.files.where({ focused: 1 }).first())
+  const file = useLiveQuery(() => db.files.where({ focused: 1 }).first());
 
-  const debounced = useDebouncedCallback((value) => {
-    db.files.update(file.id, {
-      code: value,
-      modified: new Date()
-    })
-  }, 500)
+  const debouncedUpdate = useDebouncedCallback((value) => {
+    if (file) {
+      db.files.update(file.id, {
+        code: value,
+        modified: new Date()
+      });
+    }
+  }, 500);
 
   useEffect(() => {
     if (file && !view) {
       const viewCurrent = createSparqlEditor({
         parent: container.current,
-        onChange: onChange,
+        onChange: handleChange,
         value: file.code
-      })
+      });
 
-      setView(viewCurrent)
+      setView(viewCurrent);
     }
-  }, [container, view, file?.id])
+  }, [file, view]);
 
   useEffect(() => {
     if (view) {
-      view.destroy()
-      setView(undefined)
+      view.destroy();
+      setView(null);
     }
-  }, [file?.id])
+  }, [file?.id]);
 
-  function onChange(value, viewUpdate) {
-    debounced(value)
+  function handleChange(value) {
+    debouncedUpdate(value);
   }
 
-  if (!file)
+  if (!file) {
     return (
       <div className="flex h-full items-center justify-center">
         <div className="text-center text-gray-500">
@@ -48,9 +50,12 @@ function Editor() {
           <div>Open a file to start writing your query</div>
         </div>
       </div>
-    )
+    );
+  }
 
-  return <div ref={container} className="relative h-full pb-24 text-base"></div>
+  return (
+    <div ref={container} className="relative h-full pb-24 text-base"></div>
+  );
 }
 
-export default Editor
+export default Editor;

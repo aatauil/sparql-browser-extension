@@ -1,14 +1,14 @@
-import React from "react"
-import { useLiveQuery } from "dexie-react-hooks"
-import { db } from "~data/db"
-import { AgGridReact } from "ag-grid-react"
-import Spinner from "./ui/Spinner"
-import { parseForGrid } from "~utils/parse-for-grid"
+import React from "react";
+import { useLiveQuery } from "dexie-react-hooks";
+import { db } from "~data/db";
+import { AgGridReact } from "ag-grid-react";
+import Spinner from "./ui/Spinner";
+import { parseForGrid } from "~utils/parse-for-grid";
 
 function Output() {
-  const file = useLiveQuery(() => db.files.where({ focused: 1 }).first())
+  const file = useLiveQuery(() => db.files.where({ focused: 1 }).first());
 
-  if (!file) return <EmptyStateOutput />
+  if (!file) return <EmptyStateOutput />;
 
   return (
     <div className="h-full border-t border-gray-200 bg-gray-100 pb-12">
@@ -17,14 +17,15 @@ function Output() {
         <OutputZone file={file} />
       </div>
     </div>
-  )
+  );
 }
 
 function OutputToolbar({ file }) {
   const statusColor = () => {
-    if (file?.status == 200) return "bg-green-700 text-white font-medium border-green-900"
-    return "bg-red-700 border-red-900"
-  }
+    if (file?.status == 200)
+      return "bg-green-700 text-white font-medium border-green-900";
+    return "bg-red-700 border-red-900";
+  };
 
   return (
     <div className="flex items-center space-x-2 p-2">
@@ -32,22 +33,22 @@ function OutputToolbar({ file }) {
         <Spinner />
       ) : (
         <div
-          className={`rounded px-2 py-1 text-[11px] border border-gray-400 font-medium text-white ${statusColor()}`}>
+          className={`rounded border border-gray-400 px-2 py-1 text-[11px] font-medium text-white ${statusColor()}`}>
           {file?.status} {file?.statusMessage}
         </div>
       )}
 
       {file.duration && (
-        <div className="rounded bg-white border border-gray-400 text-[11px] px-2 py-1 font-medium text-gray-700">
+        <div className="rounded border border-gray-400 bg-white px-2 py-1 text-[11px] font-medium text-gray-700">
           {file.duration}
         </div>
       )}
     </div>
-  )
+  );
 }
 
 function OutputZone({ file }) {
-  if (file.isLoading) return null
+  if (file.isLoading) return null;
 
   if (file.errorMessage) {
     return (
@@ -56,10 +57,10 @@ function OutputZone({ file }) {
           {file.errorMessage}
         </div>
       </div>
-    )
+    );
   }
 
-  const { columns, rows } = parseForGrid(file.output)
+  const { columns, rows } = parseForGrid(file.output);
 
   return (
     <div className="ag-theme-balham flex h-full flex-col">
@@ -69,7 +70,7 @@ function OutputZone({ file }) {
         enableCellTextSelection={true}
         onGridReady={(e) => e.columnApi.autoSizeAllColumns()}></AgGridReact>
     </div>
-  )
+  );
 }
 
 function EmptyStateOutput() {
@@ -91,7 +92,7 @@ function EmptyStateOutput() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Output
+export default Output;
