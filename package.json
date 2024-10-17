@@ -5,7 +5,7 @@
   "description": "A basic Plasmo extension.",
   "author": "achraf",
   "scripts": {
-    "dev": "plasmo dev",
+    "dev": "plasmo dev --verbose",
     "build": "npm-run-all clean build:* ",
     "package": "plasmo package",
     "clean": "rimraf build",
@@ -18,32 +18,33 @@
     "format:class": "prettier src/**/*.tsx --write"
   },
   "dependencies": {
-    "@tailwindcss/forms": "^0.5.7",
-    "ag-grid-community": "^29.3.5",
-    "ag-grid-react": "^29.3.5",
-    "dexie": "^3.2.4",
+    "@swc/core": "1.7.36",
+    "@tailwindcss/forms": "^0.5.9",
+    "ag-grid-community": "^32.2.2",
+    "ag-grid-react": "^32.2.2",
+    "dexie": "^4.0.8",
     "dexie-react-hooks": "^1.1.7",
-    "plasmo": "0.84.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "plasmo": "0.89.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-split": "^2.0.14",
-    "remixicon": "^4.1.0",
-    "sparql-editor": "0.5.0",
-    "tailwindcss": "3.2.4",
-    "use-debounce": "^9.0.4"
+    "remixicon": "^4.3.0",
+    "sparql-editor": "^0.6.0",
+    "tailwindcss": "^3.4.14",
+    "use-debounce": "^10.0.4"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.208",
-    "@types/node": "18.11.18",
-    "@types/react": "18.0.26",
-    "@types/react-dom": "18.0.10",
+    "@types/chrome": "0.0.278",
+    "@types/node": "22.7.6",
+    "@types/react": "18.3.11",
+    "@types/react-dom": "18.3.1",
     "npm-run-all": "^4.1.5",
-    "postcss": "8.4.21",
-    "prettier": "3.0.3",
-    "prettier-plugin-tailwindcss": "^0.5.7",
-    "react-select": "^5.8.0",
-    "rimraf": "^5.0.5",
-    "typescript": "4.9.4"
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "react-select": "^5.8.1",
+    "rimraf": "^6.0.1",
+    "typescript": "5.6.3"
   },
   "manifest": {
     "host_permissions": [
