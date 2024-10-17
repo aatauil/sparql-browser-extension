@@ -15,7 +15,7 @@
     "build:opera": "plasmo build --target=opera-mv3 --zip",
     "build:ff": "plasmo build --target=firefox-mv2 --zip --minify",
     "analyze": "plasmo build --source-maps --bundle-buddy",
-    "format:class": "prettier src/**/*.tsx --write"
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,html}\""
   },
   "dependencies": {
     "@swc/core": "1.7.36",

@@ -1,13 +1,12 @@
-@import 'remixicon/fonts/remixicon.css';
+@import "remixicon/fonts/remixicon.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 .cm-editor {
   height: 100% !important;
-  @apply p-2
+  @apply p-2;
 }
 
 .cm-gutter {
@@ -15,13 +14,12 @@
   background-color: white;
 }
 
-
 .cm-gutters {
   border: none !important;
 }
 
 .cm-gutterElement {
-  @apply text-sm text-gray-800
+  @apply text-sm text-gray-800;
 }
 
 .cm-focused {
@@ -29,15 +27,15 @@
 }
 
 .rdg-cell {
-  @apply border
+  @apply border;
 }
 
 .rdg-row-even {
-  @apply bg-gray-50
+  @apply bg-gray-50;
 }
 
 .rdg-cell-resizable::after {
-  @apply bg-gray-100
+  @apply bg-gray-100;
 }
 
 .gutter {
@@ -47,7 +45,7 @@
   background-color: #e2e2e2;
   background-repeat: no-repeat;
   background-position: 50%;
-  transition: background-color 0.5s
+  transition: background-color 0.5s;
 }
 
 .gutter:hover {
@@ -58,7 +56,7 @@
 }
 
 .gutter.gutter-vertical {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
   cursor: row-resize;
 }
 

@@ -1,22 +1,27 @@
-import "~style.css"
+import "~style.css";
 
 function IndexPopup() {
-  function createTab() {
+  const createTab = () => {
     chrome.tabs.create({
-      url: './tabs/index.html'
-    })
-  }
+      url: "./tabs/index.html"
+    });
+  };
+
   return (
-    <div className="border w-64 p-2">
-      <div className='flex items-center space-x-2 p-2 text-sm'>
-        <i className="ri-bubble-chart-fill text-blue-600"></i>
-        <h1 className='font-extrabold text-gray-800'>Sparql browser extension</h1>
-      </div> 
+    <div className="w-64 bg-blue-600 p-4 shadow-md">
+      <div className="mb-4 flex items-center space-x-2">
+        <i className="ri-bubble-chart-fill text-2xl text-white" />
+        <h1 className="font-medium text-white">Sparql Browser Extension</h1>
+      </div>
       <div className="w-full">
-        <button onClick={() => createTab()} className="w-full p-2 text-center font-medium bg-blue-600 text-white rounded hover:bg-blue-700">open editor</button>
+        <button
+          onClick={createTab}
+          className="w-full rounded-lg bg-white p-2 text-center font-medium text-blue-600 transition duration-200 hover:bg-gray-200">
+          Open Editor
+        </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default IndexPopup
+export default IndexPopup;
