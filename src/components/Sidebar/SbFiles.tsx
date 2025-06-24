@@ -82,7 +82,8 @@ function SbFiles() {
           <i className="ri-add-line text-sm"></i>
         </button>
       </div>
-      <div className="space-y-px p-2">
+
+      <div className='p-2 space-y-px h-[450px] overflow-auto'>
         {isCreating && (
           <div
             ref={fileInput}

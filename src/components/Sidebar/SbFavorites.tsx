@@ -28,7 +28,8 @@ function SbFavorites() {
           Favorites
         </h2>
       </div>
-      <div className="space-y-px p-2">
+
+      <div className='p-2 space-y-px h-[200px] overflow-auto'>
         {favorites?.map((file, index) => (
           <div
             key={index}
